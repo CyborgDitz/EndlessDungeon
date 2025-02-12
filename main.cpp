@@ -7,9 +7,7 @@ int main() {
 
     InitWindow(SCREEN_WIDTH, SCREEN_WIDTH, "C++ Raylib Grid Example");
     
-    Vector2 dimensions = { 10, 8 };
-    Vector2 tileSize = { 64, 64 };
-    grid myGrid(dimensions, tileSize);
+
     PlayerController playerController;
     SetTargetFPS(60);  
 
@@ -19,6 +17,7 @@ int main() {
         playerController.Update();
         DrawGrid(myGrid);
         playerController.Draw();
+
         EndDrawing();
     }
 

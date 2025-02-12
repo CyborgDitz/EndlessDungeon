@@ -21,7 +21,6 @@ typedef struct {
     bool solid;
 } dungBlock;
 
-
 struct grid {
     Vector2 dimensions;
     Vector2 tileSize;
@@ -35,6 +34,7 @@ struct grid {
         int cols = static_cast<int>(dimensions.x);
         int rows = static_cast<int>(dimensions.y);
 
+        // Create tiles.
         for (int j = 0; j < rows; ++j) {
             for (int i = 0; i < cols; ++i) {
                 tile t;
@@ -44,17 +44,30 @@ struct grid {
             }
         }
 
+        // Create border blocks.
         for (int i = 0; i < cols; ++i) {
             blocks.push_back({ i, 0, true });
             blocks.push_back({ i, rows - 1, true });
         }
-
         for (int j = 1; j < rows - 1; ++j) {
             blocks.push_back({ 0, j, true });
             blocks.push_back({ cols - 1, j, true });
         }
 
+        // Initialize the cellContents vector to CELL_EMPTY.
         cellContents.resize(cols * rows, CELL_EMPTY);
+
+        // For example, you might want to mark border cells with a hazard:
+        // (This is just an example; adjust as needed for your game.)
+        for (const dungBlock &db : blocks) {
+            int cellIndex = db.y * cols + db.x;
+            // Here you might decide some border blocks are enemies and some are traps.
+            // For demonstration, let's say if x is even, mark it as an enemy, otherwise as a trap.
+            if (db.x % 2 == 0)
+                cellContents[cellIndex] = CELL_ENEMY;
+            else
+                cellContents[cellIndex] = CELL_TRAP;
+        }
     }
 };
 
@@ -66,5 +79,5 @@ struct player {
         : Position(pos), Size(size), health(hp)
     {}**/
 };
-
+static const grid myGrid(GRID_DIMENSIONS, TILE_SIZE);
 #endif //DATA_H
