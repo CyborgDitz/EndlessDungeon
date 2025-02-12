@@ -1,14 +1,19 @@
+
 #ifndef DATA_H
 #define DATA_H
-
 #include "common.h"
-#include <vector>
-#include <sstream>
 
+enum CellType {
+    CELL_EMPTY = 0,
+    CELL_PLAYER,
+    CELL_ENEMY,
+    CELL_LOOT,
+    CELL_TRAP
+};
 
 typedef struct {
-    Vector2 Position;
-    Vector2 Size;
+    Vector2 position;
+    Vector2 size;
 } tile;
 
 typedef struct {
@@ -16,34 +21,13 @@ typedef struct {
     bool solid;
 } dungBlock;
 
-class GameObject {
-public:
-    Vector2 position;
-    Vector2 size;
-
-    GameObject(Vector2 pos, Vector2 s)
-        : position(pos), size(s)
-    {}
-
-    virtual ~GameObject() {}
-
-    virtual void Update() {}
-
-    virtual void Draw() {
-
-        DrawRectangleV(position, size, WHITE);
-    }
-};
-
-
 
 struct grid {
     Vector2 dimensions;
     Vector2 tileSize;
     std::vector<tile> tiles;
     std::vector<dungBlock> blocks;
-
-    std::vector<GameObject*> objects;
+    std::vector<CellType> cellContents;
 
     grid(Vector2 dimensions, Vector2 tileSize)
         : dimensions(dimensions), tileSize(tileSize)
@@ -54,8 +38,8 @@ struct grid {
         for (int j = 0; j < rows; ++j) {
             for (int i = 0; i < cols; ++i) {
                 tile t;
-                t.Position = { i * tileSize.x, j * tileSize.y };
-                t.Size = tileSize;
+                t.position = { i * tileSize.x, j * tileSize.y };
+                t.size = tileSize;
                 tiles.push_back(t);
             }
         }
@@ -69,13 +53,18 @@ struct grid {
             blocks.push_back({ 0, j, true });
             blocks.push_back({ cols - 1, j, true });
         }
-    }
 
-    ~grid() {
-        for (GameObject* objects : objects) {
-            delete objects;
-        }
+        cellContents.resize(cols * rows, CELL_EMPTY);
     }
 };
 
-#endif // DATA_H
+struct player {
+    Vector2 position;
+    Vector2 size;
+    int health;
+   /** player(Vector2 pos = { 0, 0 }, Vector2 size = { 64, 64 }, int hp = 100)
+        : Position(pos), Size(size), health(hp)
+    {}**/
+};
+
+#endif //DATA_H
