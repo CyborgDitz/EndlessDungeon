@@ -1,18 +1,41 @@
-
 #ifndef DATA_H
 #define DATA_H
+
 #include "common.h"
+#include <vector>
+#include <sstream>
 
 
-
-typedef struct{
+typedef struct {
     Vector2 Position;
     Vector2 Size;
-  } tile ;
-typedef struct{
+} tile;
+
+typedef struct {
     int x, y;
     bool solid;
 } dungBlock;
+
+class GameObject {
+public:
+    Vector2 position;
+    Vector2 size;
+
+    GameObject(Vector2 pos, Vector2 s)
+        : position(pos), size(s)
+    {}
+
+    virtual ~GameObject() {}
+
+    virtual void Update() {}
+
+    virtual void Draw() {
+
+        DrawRectangleV(position, size, WHITE);
+    }
+};
+
+
 
 struct grid {
     Vector2 dimensions;
@@ -20,18 +43,19 @@ struct grid {
     std::vector<tile> tiles;
     std::vector<dungBlock> blocks;
 
-    grid(Vector2 dimensions, Vector2 tileSIze)
-        : dimensions(dimensions), tileSize(tileSIze)
+    std::vector<GameObject*> objects;
+
+    grid(Vector2 dimensions, Vector2 tileSize)
+        : dimensions(dimensions), tileSize(tileSize)
     {
         int cols = static_cast<int>(dimensions.x);
         int rows = static_cast<int>(dimensions.y);
 
-
         for (int j = 0; j < rows; ++j) {
             for (int i = 0; i < cols; ++i) {
                 tile t;
-                t.Position = { i * tileSIze.x, j * tileSIze.y };
-                t.Size = tileSIze;
+                t.Position = { i * tileSize.x, j * tileSize.y };
+                t.Size = tileSize;
                 tiles.push_back(t);
             }
         }
@@ -46,15 +70,12 @@ struct grid {
             blocks.push_back({ cols - 1, j, true });
         }
     }
+
+    ~grid() {
+        for (GameObject* objects : objects) {
+            delete objects;
+        }
+    }
 };
 
-struct player {
-    Vector2 Position;
-    Vector2 Size;
-    int health;
-   /** player(Vector2 pos = { 0, 0 }, Vector2 size = { 64, 64 }, int hp = 100)
-        : Position(pos), Size(size), health(hp)
-    {}**/
-};
-
-#endif //DATA_H
+#endif // DATA_H
