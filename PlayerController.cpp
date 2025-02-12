@@ -10,6 +10,7 @@ PlayerController::PlayerController()
 }
 
 PlayerController::~PlayerController() {
+    // No dynamic memory to clean up in this simple example.
 }
 
 CellType PlayerStandingOnCell(const player* p, const grid* g) {
@@ -31,7 +32,6 @@ void PlayerController::Update() {
     if (IsKeyPressed(KEY_S)) movement.y += gridCellSize.y;
     if (IsKeyPressed(KEY_W)) movement.y -= gridCellSize.y;
 
-
     if (movement.x != 0 || movement.y != 0) {
 
         Vector2 previousPosition = player.position;
@@ -40,11 +40,14 @@ void PlayerController::Update() {
         player.position.x += movement.x;
         player.position.y += movement.y;
 
-
         CellType cell = PlayerStandingOnCell(&player, &myGrid);
-        if (cell == CELL_ENEMY) {
 
+
+        if (cell == CELL_TRAP) {
+            player.health -= 10;
+        } else if (cell == CELL_ENEMY) {
             player.health -= 5;
+
             player.position.x = previousPosition.x - movement.x;
             player.position.y = previousPosition.y - movement.y;
         }
@@ -52,10 +55,6 @@ void PlayerController::Update() {
 }
 
 void PlayerController::Draw() {
-    CellType currentCell = PlayerStandingOnCell(&player, &myGrid);
-    if (currentCell == CELL_TRAP) {
-        player.health -= 10;
-    }
 
     DrawRectangleV(player.position, player.size, BLUE);
 
@@ -66,7 +65,6 @@ void PlayerController::Draw() {
         static_cast<int>(player.size.y),
         DARKBLUE
     );
-
 
     char healthText[32];
     std::sprintf(healthText, "HP: %d", player.health);
