@@ -1,11 +1,13 @@
 
 #ifndef COMMON_H
 #define COMMON_H
-
 #include "raylib.h"
-#include <vector>
 #include "raymath.h"
+#include "gameConfig.h"
+#include <vector>
+#include <map>
 #include <ctime>
+#include <iostream>
 
 
 const int GRID_SIZE = 8;
@@ -23,6 +25,20 @@ enum CellType {
     EMPTY
 };
 
+enum TileEffect {
+    CLEAR_TILE,
+    DAMAGE_PLAYER,
+    HEAL_PLAYER,
+    PUSH_PLAYER,
+    NEXT_LEVEL
+};
+map<CellType, vector<TileEffect>> tileEffects = {
+    {TRAP, {DAMAGE_PLAYER, CLEAR_TILE}},
+    {LOOT, {HEAL_PLAYER, CLEAR_TILE}},
+    {ENEMY, {DAMAGE_PLAYER}},
+    {STAIRS, {NEXT_LEVEL}},
+    {WALL, {PUSH_PLAYER}},
+};
 typedef struct Tile {
     int x, y;
     bool solid;

@@ -15,6 +15,7 @@ add_executable(EndlessDungeon main.cpp
         PlayerController.cpp
         grid.cpp
         gridRenderer.cpp
+        gameConfig.h
 )
 
 # Link your executable to the raylib target.
