@@ -26,5 +26,4 @@ void DrawGrid(const grid &myGrid) {
         Vector2 pos = { db.x * myGrid.tileSize.x, db.y * myGrid.tileSize.y };
         DrawRectangleV(pos, myGrid.tileSize, blockColor);
     }
-
 }
