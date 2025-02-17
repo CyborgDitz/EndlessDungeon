@@ -15,7 +15,7 @@ int main() {
         BeginDrawing();
         ClearBackground(RAYWHITE);
         playerController.Update();
-        DrawGrid(myGrid);
+        DrawDungeonGrid(myGrid);
         playerController.Draw();
 
         EndDrawing();

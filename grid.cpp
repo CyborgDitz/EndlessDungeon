@@ -1,7 +1,6 @@
-
 #include "DungeonGen.h"
 
-void DrawGrid(const grid &myGrid) {
+void DrawDungeonGrid(const grid &myGrid) {
     for (size_t i = 0; i < myGrid.tiles.size(); ++i) {
         const tile &t = myGrid.tiles[i];
         Color fillColor = LIGHTGRAY;
@@ -16,16 +15,11 @@ void DrawGrid(const grid &myGrid) {
     }
 
     int cols = static_cast<int>(myGrid.dimensions.x);
-
-    for (const tile &db : myGrid.tiles) {
-        if (db.solid) {
-
-            int cellIndex = db.y * cols + db.x;
-
-
+    for (const tile &t : myGrid.tiles) {
+        if (t.solid) {
+            int cellIndex = t.y * cols + t.x;
             Color blockColor = (myGrid.cellContents[cellIndex] == CELL_ENEMY) ? RED : DARKGRAY;
-
-            Vector2 pos = { db.x * myGrid.tileSize.x, db.y * myGrid.tileSize.y };
+            Vector2 pos = { t.x * myGrid.tileSize.x, t.y * myGrid.tileSize.y };
             DrawRectangleV(pos, myGrid.tileSize, blockColor);
         }
     }
