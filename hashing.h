@@ -18,4 +18,4 @@ struct CellKeyHasher {
     }
 };
 
-#endif  // HASHING_H
+#endif
