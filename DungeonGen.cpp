@@ -1,30 +1,18 @@
 #include "data.h"
 
 void DrawGrid(const grid &myGrid) {
-
-    for (size_t i = 0; i < myGrid.tiles.size(); ++i) {
-        const tile &t = myGrid.tiles[i];
-
-        Color fillColor = LIGHTGRAY;
-        switch (myGrid.cellContents[i]) {
-            case CELL_PLAYER: fillColor = BLUE;    break;
-            case CELL_ENEMY:  fillColor = RED;     break;
-            case CELL_LOOT:   fillColor = GOLD;    break;
-            case CELL_TRAP:   fillColor = DARKGRAY; break;
-            default:          fillColor = LIGHTGRAY; break;
-        }
-        DrawRectangleV(t.position, t.size, fillColor);
-    }
-
     int cols = static_cast<int>(myGrid.dimensions.x);
-    for (const dungBlock &db : myGrid.blocks) {
-
-        int cellIndex = db.y * cols + db.x;
-
-        Color blockColor = (myGrid.cellContents[cellIndex] == CELL_ENEMY) ? RED : DARKGRAY;
-
-        Vector2 pos = { db.x * myGrid.tileSize.x, db.y * myGrid.tileSize.y };
-        DrawRectangleV(pos, myGrid.tileSize, blockColor);
+    int rows = static_cast<int>(myGrid.dimensions.y);
+    for (int j = 0; j < rows; j++) {
+        for (int i = 0; i < cols; i++) {
+            CellKey key { i, j };
+            auto it = myGrid.cellMap.find(key);
+            if (it != myGrid.cellMap.end()) {
+                Color fillColor = it->second.color;
+                if (i == 0 || j == 0 || i == cols - 1 || j == rows - 1)
+                    fillColor = cellColors[CELL_WALL];
+                DrawRectangleV(it->second.position, it->second.size, fillColor);
+            }
+        }
     }
-
 }
