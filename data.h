@@ -1,83 +1,92 @@
-
 #ifndef DATA_H
 #define DATA_H
+
 #include "common.h"
+#include "hashing.h"
+#include <vector>
+#include <string>
+#include <unordered_map>
 
 enum CellType {
     CELL_EMPTY = 0,
     CELL_PLAYER,
     CELL_ENEMY,
     CELL_LOOT,
-    CELL_TRAP
+    CELL_TRAP,
+    CELL_WALL,
+    NUM_CELL_TYPES
 };
 
-typedef struct {
+static const Color cellColors[NUM_CELL_TYPES] = {
+    RAYWHITE,
+    BLUE,
+    RED,
+    GOLD,
+    DARKGRAY,
+    BLACK
+};
+
+typedef struct Cell {
+    CellType type;
+    Color color;
+    bool solid;
+    std::vector<std::string> effects;
+    int damage;
+    int gridX, gridY;
     Vector2 position;
     Vector2 size;
-} tile;
+} cell;
 
-typedef struct {
-    int x, y;
-    bool solid;
-} dungBlock;
+static const std::vector<Cell> cellPrototypes = {
 
-struct grid {
-    Vector2 dimensions;
-    Vector2 tileSize;
-    std::vector<tile> tiles;
-    std::vector<dungBlock> blocks;
-    std::vector<CellType> cellContents;
-
-    grid(Vector2 dimensions, Vector2 tileSize)
-        : dimensions(dimensions), tileSize(tileSize)
-    {
-        int cols = static_cast<int>(dimensions.x);
-        int rows = static_cast<int>(dimensions.y);
-
-        // Create tiles.
-        for (int j = 0; j < rows; ++j) {
-            for (int i = 0; i < cols; ++i) {
-                tile t;
-                t.position = { i * tileSize.x, j * tileSize.y };
-                t.size = tileSize;
-                tiles.push_back(t);
-            }
-        }
-
-        // Create border blocks.
-        for (int i = 0; i < cols; ++i) {
-            blocks.push_back({ i, 0, true });
-            blocks.push_back({ i, rows - 1, true });
-        }
-        for (int j = 1; j < rows - 1; ++j) {
-            blocks.push_back({ 0, j, true });
-            blocks.push_back({ cols - 1, j, true });
-        }
-
-        // Initialize the cellContents vector to CELL_EMPTY.
-        cellContents.resize(cols * rows, CELL_EMPTY);
-
-        // For example, you might want to mark border cells with a hazard:
-        // (This is just an example; adjust as needed for your game.)
-        for (const dungBlock &db : blocks) {
-            int cellIndex = db.y * cols + db.x;
-            // Here you might decide some border blocks are enemies and some are traps.
-            // For demonstration, let's say if x is even, mark it as an enemy, otherwise as a trap.
-            if (db.x % 2 == 0)
-                cellContents[cellIndex] = CELL_ENEMY;
-            else
-                cellContents[cellIndex] = CELL_TRAP;
-        }
-    }
+    { CELL_EMPTY,   cellColors[CELL_EMPTY],   false,  {},                  0,      0,     0,     {0.0f, 0.0f},       {32.0f, 32.0f} },
+    { CELL_PLAYER,  cellColors[CELL_PLAYER],  true,   {"can move"},        0,      1,     0,     {32.0f, 0.0f},      {32.0f, 32.0f} },
+    { CELL_ENEMY,   cellColors[CELL_ENEMY],   true,   {"moves to player"}, 10,    2,     0,     {64.0f, 0.0f},      {32.0f, 32.0f} },
+    { CELL_LOOT,    cellColors[CELL_LOOT],    false,  {"pickup"},          0,      3,     0,     {96.0f, 0.0f},      {32.0f, 32.0f} },
+    { CELL_TRAP,    cellColors[CELL_TRAP],    false,  {"damages"},         20,     4,     0,     {128.0f, 0.0f},     {32.0f, 32.0f} },
+    { CELL_WALL,    cellColors[CELL_WALL],    true,   {"pushes"},          20,     5,     0,     {160.0f, 0.0f},     {32.0f, 32.0f} }
 };
 
-struct player {
+typedef struct Grid {
+    Vector2 dimensions;
+    Vector2 tileSize;
+    std::unordered_map<CellKey, Cell, CellKeyHasher> cellMap;
+
+    Grid(Vector2 dimensions, Vector2 tileSize)
+        : dimensions(dimensions), tileSize(tileSize)
+    {
+        initializeCells();
+    }
+
+private:
+    void initializeCells() {
+        int cols = static_cast<int>(dimensions.x);
+        int rows = static_cast<int>(dimensions.y);
+        for (int j = 0; j < rows; ++j) {
+            for (int i = 0; i < cols; ++i) {
+                Cell cell;
+                cell.gridX = i;
+                cell.gridY = j;
+                cell.position = { i * tileSize.x, j * tileSize.y };
+                cell.size = tileSize;
+                cell.type = CELL_EMPTY;
+                cell.color = cellColors[CELL_EMPTY];
+                cell.damage = 0;
+                cell.effects = {"none"};
+                cell.solid = false;
+                CellKey key{ i, j };
+                cellMap.insert({ key, cell });
+            }
+        }
+    }
+}grid;
+
+typedef struct Player {
     Vector2 position;
     Vector2 size;
     int health;
-   /** player(Vector2 pos = { 0, 0 }, Vector2 size = { 64, 64 }, int hp = 100)
-        : Position(pos), Size(size), health(hp)
-    {}**/
-};
-static const grid myGrid(GRID_DIMENSIONS, TILE_SIZE);
-#endif //DATA_H
+}player;
+
+static const Grid myGrid(GRID_DIMENSIONS, TILE_SIZE);
+
+#endif // DATA_H
