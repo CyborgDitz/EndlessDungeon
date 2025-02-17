@@ -1,58 +1,39 @@
 #ifndef GRID_H
 #define GRID_H
+#include <ctime>
+
 #include "common.h"
 
-struct grid {
-    Vector2 dimensions;
-    Vector2 tileSize;
-    std::vector<tile> tiles;
-    std::vector<CellType> cellContents;
-
-    grid(Vector2 dimensions, Vector2 tileSize)
-        : dimensions(dimensions), tileSize(tileSize)
-    {
-        int cols = static_cast<int>(dimensions.x);
-        int rows = static_cast<int>(dimensions.y);
-
-        // Create floor tiles.
-        for (int j = 0; j < rows; ++j) {
-            for (int i = 0; i < cols; ++i) {
-                tile tile;
-                tile.position = { i * tileSize.x, j * tileSize.y };
-                tile.size = tileSize;
-                tile.x = i;
-                tile.y = j;
-                tile.solid = false;
-                tiles.push_back(tile);
-            }
-        }
-
-        // Create wall tiles.
-        for (int i = 0; i < cols; ++i) {
-            tiles.push_back({ i, 0, true });
-            tiles.push_back({ i, rows - 1, true });
-        }
-        for (int j = 1; j < rows - 1; ++j) {
-            tiles.push_back({ 0, j, true });
-            tiles.push_back({ cols - 1, j, true });
-        }
-
-        cellContents.resize(cols * rows, CELL_EMPTY);
-
-        // Example update for cellContents (update as needed).
-        for (const tile &t : tiles) {
-            if (t.x < cols && t.y < rows) {
-                int cellIndex = t.y * cols + t.x;
-                cellContents[cellIndex] = t.solid ? CELL_ENEMY : CELL_TRAP;
-            }
+void generateDungeon(vector<vector<CellType>>& grid, Player& player) {
+    srand(time(0));
+    for (int i = 0; i < GRID_SIZE; i++) {
+        for (int j = 0; j < GRID_SIZE; j++) {
+            int randTile = rand() % 12;
+            if (randTile < 6) grid[i][j] = EMPTY;
+            else if (randTile < 9) grid[i][j] = WALL;
+            else if (randTile < 11) grid[i][j] = LOOT;
+            else grid[i][j] = TRAP;
         }
     }
-};
+    player.x = 0;
+    player.y = 0;
+}
 
-// Global instance (consider moving to a .cpp file)
-static const grid myGrid(GRID_DIMENSIONS, TILE_SIZE);
 
-// Renamed function to avoid conflict with Raylib's DrawGrid.
-void DrawDungeonGrid(const grid &myGrid);
-
+void drawGrid(const vector<vector<CellType>>& grid, const Player& player) {
+    for (int i = 0; i < GRID_SIZE; i++) {
+        for (int j = 0; j < GRID_SIZE; j++) {
+            Color color;
+            switch (grid[i][j]) {
+                case WALL: color = DARKGRAY; break;
+                case LOOT: color = GOLD; break;
+                case TRAP: color = RED; break;
+                default: color = LIGHTGRAY; break;
+            }
+            DrawRectangle(j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE, color);
+            DrawRectangleLines(j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE, BLACK);
+        }
+    }
+    DrawRectangle(player.y * TILE_SIZE, player.x * TILE_SIZE, TILE_SIZE, TILE_SIZE, BLUE);
+}
 #endif // GRID_H
