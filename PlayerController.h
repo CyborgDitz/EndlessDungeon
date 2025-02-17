@@ -1,21 +1,10 @@
 
 #ifndef PLAYER_CONTROLLER_H
 #define PLAYER_CONTROLLER_H
+#include <vector>
+
 #include "playerData.h"
 
-class PlayerController {
-public:
-
-    PlayerController();
-    void Update();
-
-    void Draw();
-
-    player& GetPlayer() { return player; }
-
-private:
-    player player;
-    float speed;
-};
+void movePlayer(vector<vector<CellType>>& grid, Player& player, int directionX, int directionY);
 
 #endif //PLAYER_CONTROLLER_H
