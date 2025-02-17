@@ -32,18 +32,12 @@ enum TileEffect {
     PUSH_PLAYER,
     NEXT_LEVEL
 };
-map<CellType, vector<TileEffect>> tileEffects = {
-    {TRAP, {DAMAGE_PLAYER, CLEAR_TILE}},
-    {LOOT, {HEAL_PLAYER, CLEAR_TILE}},
-    {ENEMY, {DAMAGE_PLAYER}},
-    {STAIRS, {NEXT_LEVEL}},
-    {WALL, {PUSH_PLAYER}},
-};
+
 typedef struct Tile {
     int x, y;
     bool solid;
 
     Tile(int x = 0, int y = 0, bool solid = false) : x(x), y(y), solid(solid) {}
 } tile;
-
+extern std::map<CellType, std::vector<TileEffect>> tileEffects;
 #endif //COMMON_H

@@ -245,6 +245,30 @@ update_mappings/fast:
 	$(MAKE) $(MAKESILENT) -f raylib_build\raylib\external\glfw\src\CMakeFiles\update_mappings.dir\build.make raylib_build/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
 
+GameController.obj: GameController.cpp.obj
+.PHONY : GameController.obj
+
+# target to build an object file
+GameController.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/GameController.cpp.obj
+.PHONY : GameController.cpp.obj
+
+GameController.i: GameController.cpp.i
+.PHONY : GameController.i
+
+# target to preprocess a source file
+GameController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/GameController.cpp.i
+.PHONY : GameController.cpp.i
+
+GameController.s: GameController.cpp.s
+.PHONY : GameController.s
+
+# target to generate assembly for a file
+GameController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/GameController.cpp.s
+.PHONY : GameController.cpp.s
+
 PlayerController.obj: PlayerController.cpp.obj
 .PHONY : PlayerController.obj
 
@@ -269,53 +293,53 @@ PlayerController.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/PlayerController.cpp.s
 .PHONY : PlayerController.cpp.s
 
-grid.obj: grid.cpp.obj
-.PHONY : grid.obj
+common.obj: common.cpp.obj
+.PHONY : common.obj
 
 # target to build an object file
-grid.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/grid.cpp.obj
-.PHONY : grid.cpp.obj
+common.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/common.cpp.obj
+.PHONY : common.cpp.obj
 
-grid.i: grid.cpp.i
-.PHONY : grid.i
+common.i: common.cpp.i
+.PHONY : common.i
 
 # target to preprocess a source file
-grid.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/grid.cpp.i
-.PHONY : grid.cpp.i
+common.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/common.cpp.i
+.PHONY : common.cpp.i
 
-grid.s: grid.cpp.s
-.PHONY : grid.s
+common.s: common.cpp.s
+.PHONY : common.s
 
 # target to generate assembly for a file
-grid.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/grid.cpp.s
-.PHONY : grid.cpp.s
+common.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/common.cpp.s
+.PHONY : common.cpp.s
 
-gridRenderer.obj: gridRenderer.cpp.obj
-.PHONY : gridRenderer.obj
+gridRender.obj: gridRender.cpp.obj
+.PHONY : gridRender.obj
 
 # target to build an object file
-gridRenderer.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.obj
-.PHONY : gridRenderer.cpp.obj
+gridRender.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/gridRender.cpp.obj
+.PHONY : gridRender.cpp.obj
 
-gridRenderer.i: gridRenderer.cpp.i
-.PHONY : gridRenderer.i
+gridRender.i: gridRender.cpp.i
+.PHONY : gridRender.i
 
 # target to preprocess a source file
-gridRenderer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.i
-.PHONY : gridRenderer.cpp.i
+gridRender.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/gridRender.cpp.i
+.PHONY : gridRender.cpp.i
 
-gridRenderer.s: gridRenderer.cpp.s
-.PHONY : gridRenderer.s
+gridRender.s: gridRender.cpp.s
+.PHONY : gridRender.s
 
 # target to generate assembly for a file
-gridRenderer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.s
-.PHONY : gridRenderer.cpp.s
+gridRender.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/gridRender.cpp.s
+.PHONY : gridRender.cpp.s
 
 main.obj: main.cpp.obj
 .PHONY : main.obj
@@ -360,15 +384,18 @@ help:
 	@echo ... EndlessDungeon
 	@echo ... glfw
 	@echo ... raylib
+	@echo ... GameController.obj
+	@echo ... GameController.i
+	@echo ... GameController.s
 	@echo ... PlayerController.obj
 	@echo ... PlayerController.i
 	@echo ... PlayerController.s
-	@echo ... grid.obj
-	@echo ... grid.i
-	@echo ... grid.s
-	@echo ... gridRenderer.obj
-	@echo ... gridRenderer.i
-	@echo ... gridRenderer.s
+	@echo ... common.obj
+	@echo ... common.i
+	@echo ... common.s
+	@echo ... gridRender.obj
+	@echo ... gridRender.i
+	@echo ... gridRender.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

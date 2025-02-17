@@ -98,56 +98,73 @@ CMakeFiles/EndlessDungeon.dir/PlayerController.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/EndlessDungeon.dir/PlayerController.cpp.s"
 	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Projects\C++\EndlessDungeon\PlayerController.cpp -o CMakeFiles\EndlessDungeon.dir\PlayerController.cpp.s
 
-CMakeFiles/EndlessDungeon.dir/grid.cpp.obj: CMakeFiles/EndlessDungeon.dir/flags.make
-CMakeFiles/EndlessDungeon.dir/grid.cpp.obj: CMakeFiles/EndlessDungeon.dir/includes_CXX.rsp
-CMakeFiles/EndlessDungeon.dir/grid.cpp.obj: C:/Projects/C++/EndlessDungeon/grid.cpp
-CMakeFiles/EndlessDungeon.dir/grid.cpp.obj: CMakeFiles/EndlessDungeon.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Projects\C++\EndlessDungeon\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/EndlessDungeon.dir/grid.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EndlessDungeon.dir/grid.cpp.obj -MF CMakeFiles\EndlessDungeon.dir\grid.cpp.obj.d -o CMakeFiles\EndlessDungeon.dir\grid.cpp.obj -c C:\Projects\C++\EndlessDungeon\grid.cpp
+CMakeFiles/EndlessDungeon.dir/gridRender.cpp.obj: CMakeFiles/EndlessDungeon.dir/flags.make
+CMakeFiles/EndlessDungeon.dir/gridRender.cpp.obj: CMakeFiles/EndlessDungeon.dir/includes_CXX.rsp
+CMakeFiles/EndlessDungeon.dir/gridRender.cpp.obj: C:/Projects/C++/EndlessDungeon/gridRender.cpp
+CMakeFiles/EndlessDungeon.dir/gridRender.cpp.obj: CMakeFiles/EndlessDungeon.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Projects\C++\EndlessDungeon\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/EndlessDungeon.dir/gridRender.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EndlessDungeon.dir/gridRender.cpp.obj -MF CMakeFiles\EndlessDungeon.dir\gridRender.cpp.obj.d -o CMakeFiles\EndlessDungeon.dir\gridRender.cpp.obj -c C:\Projects\C++\EndlessDungeon\gridRender.cpp
 
-CMakeFiles/EndlessDungeon.dir/grid.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/EndlessDungeon.dir/grid.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Projects\C++\EndlessDungeon\grid.cpp > CMakeFiles\EndlessDungeon.dir\grid.cpp.i
+CMakeFiles/EndlessDungeon.dir/gridRender.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/EndlessDungeon.dir/gridRender.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Projects\C++\EndlessDungeon\gridRender.cpp > CMakeFiles\EndlessDungeon.dir\gridRender.cpp.i
 
-CMakeFiles/EndlessDungeon.dir/grid.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/EndlessDungeon.dir/grid.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Projects\C++\EndlessDungeon\grid.cpp -o CMakeFiles\EndlessDungeon.dir\grid.cpp.s
+CMakeFiles/EndlessDungeon.dir/gridRender.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/EndlessDungeon.dir/gridRender.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Projects\C++\EndlessDungeon\gridRender.cpp -o CMakeFiles\EndlessDungeon.dir\gridRender.cpp.s
 
-CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.obj: CMakeFiles/EndlessDungeon.dir/flags.make
-CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.obj: CMakeFiles/EndlessDungeon.dir/includes_CXX.rsp
-CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.obj: C:/Projects/C++/EndlessDungeon/gridRenderer.cpp
-CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.obj: CMakeFiles/EndlessDungeon.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Projects\C++\EndlessDungeon\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.obj -MF CMakeFiles\EndlessDungeon.dir\gridRenderer.cpp.obj.d -o CMakeFiles\EndlessDungeon.dir\gridRenderer.cpp.obj -c C:\Projects\C++\EndlessDungeon\gridRenderer.cpp
+CMakeFiles/EndlessDungeon.dir/GameController.cpp.obj: CMakeFiles/EndlessDungeon.dir/flags.make
+CMakeFiles/EndlessDungeon.dir/GameController.cpp.obj: CMakeFiles/EndlessDungeon.dir/includes_CXX.rsp
+CMakeFiles/EndlessDungeon.dir/GameController.cpp.obj: C:/Projects/C++/EndlessDungeon/GameController.cpp
+CMakeFiles/EndlessDungeon.dir/GameController.cpp.obj: CMakeFiles/EndlessDungeon.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Projects\C++\EndlessDungeon\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/EndlessDungeon.dir/GameController.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EndlessDungeon.dir/GameController.cpp.obj -MF CMakeFiles\EndlessDungeon.dir\GameController.cpp.obj.d -o CMakeFiles\EndlessDungeon.dir\GameController.cpp.obj -c C:\Projects\C++\EndlessDungeon\GameController.cpp
 
-CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Projects\C++\EndlessDungeon\gridRenderer.cpp > CMakeFiles\EndlessDungeon.dir\gridRenderer.cpp.i
+CMakeFiles/EndlessDungeon.dir/GameController.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/EndlessDungeon.dir/GameController.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Projects\C++\EndlessDungeon\GameController.cpp > CMakeFiles\EndlessDungeon.dir\GameController.cpp.i
 
-CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Projects\C++\EndlessDungeon\gridRenderer.cpp -o CMakeFiles\EndlessDungeon.dir\gridRenderer.cpp.s
+CMakeFiles/EndlessDungeon.dir/GameController.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/EndlessDungeon.dir/GameController.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Projects\C++\EndlessDungeon\GameController.cpp -o CMakeFiles\EndlessDungeon.dir\GameController.cpp.s
+
+CMakeFiles/EndlessDungeon.dir/common.cpp.obj: CMakeFiles/EndlessDungeon.dir/flags.make
+CMakeFiles/EndlessDungeon.dir/common.cpp.obj: CMakeFiles/EndlessDungeon.dir/includes_CXX.rsp
+CMakeFiles/EndlessDungeon.dir/common.cpp.obj: C:/Projects/C++/EndlessDungeon/common.cpp
+CMakeFiles/EndlessDungeon.dir/common.cpp.obj: CMakeFiles/EndlessDungeon.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=C:\Projects\C++\EndlessDungeon\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/EndlessDungeon.dir/common.cpp.obj"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/EndlessDungeon.dir/common.cpp.obj -MF CMakeFiles\EndlessDungeon.dir\common.cpp.obj.d -o CMakeFiles\EndlessDungeon.dir\common.cpp.obj -c C:\Projects\C++\EndlessDungeon\common.cpp
+
+CMakeFiles/EndlessDungeon.dir/common.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/EndlessDungeon.dir/common.cpp.i"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Projects\C++\EndlessDungeon\common.cpp > CMakeFiles\EndlessDungeon.dir\common.cpp.i
+
+CMakeFiles/EndlessDungeon.dir/common.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/EndlessDungeon.dir/common.cpp.s"
+	C:\PROGRA~1\JETBRA~1\CLION2~1.1\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Projects\C++\EndlessDungeon\common.cpp -o CMakeFiles\EndlessDungeon.dir\common.cpp.s
 
 # Object files for target EndlessDungeon
 EndlessDungeon_OBJECTS = \
 "CMakeFiles/EndlessDungeon.dir/main.cpp.obj" \
 "CMakeFiles/EndlessDungeon.dir/PlayerController.cpp.obj" \
-"CMakeFiles/EndlessDungeon.dir/grid.cpp.obj" \
-"CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.obj"
+"CMakeFiles/EndlessDungeon.dir/gridRender.cpp.obj" \
+"CMakeFiles/EndlessDungeon.dir/GameController.cpp.obj" \
+"CMakeFiles/EndlessDungeon.dir/common.cpp.obj"
 
 # External object files for target EndlessDungeon
 EndlessDungeon_EXTERNAL_OBJECTS =
 
 EndlessDungeon.exe: CMakeFiles/EndlessDungeon.dir/main.cpp.obj
 EndlessDungeon.exe: CMakeFiles/EndlessDungeon.dir/PlayerController.cpp.obj
-EndlessDungeon.exe: CMakeFiles/EndlessDungeon.dir/grid.cpp.obj
-EndlessDungeon.exe: CMakeFiles/EndlessDungeon.dir/gridRenderer.cpp.obj
+EndlessDungeon.exe: CMakeFiles/EndlessDungeon.dir/gridRender.cpp.obj
+EndlessDungeon.exe: CMakeFiles/EndlessDungeon.dir/GameController.cpp.obj
+EndlessDungeon.exe: CMakeFiles/EndlessDungeon.dir/common.cpp.obj
 EndlessDungeon.exe: CMakeFiles/EndlessDungeon.dir/build.make
 EndlessDungeon.exe: raylib_build/raylib/libraylib.a
 EndlessDungeon.exe: CMakeFiles/EndlessDungeon.dir/linkLibs.rsp
 EndlessDungeon.exe: CMakeFiles/EndlessDungeon.dir/objects1.rsp
 EndlessDungeon.exe: CMakeFiles/EndlessDungeon.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Projects\C++\EndlessDungeon\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable EndlessDungeon.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=C:\Projects\C++\EndlessDungeon\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable EndlessDungeon.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\EndlessDungeon.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
