@@ -1,10 +1,14 @@
-
 #ifndef PLAYER_CONTROLLER_H
 #define PLAYER_CONTROLLER_H
-#include <vector>
 
+#include <vector>
+#include "common.h"
 #include "playerData.h"
 
-void movePlayer(vector<vector<CellType>>& grid, Player& player, int directionX, int directionY);
+extern GameConfig gameConfig;
 
-#endif //PLAYER_CONTROLLER_H
+void applyTileEffects(std::vector<std::vector<CellType>>& grid, Player& player, std::vector<TileEffect> effects);
+void checkTileEffect(std::vector<std::vector<CellType>>& grid, Player& player);
+void movePlayer(std::vector<std::vector<CellType>>& grid, Player& player, int directionY, int directionX);
+
+#endif // PLAYER_CONTROLLER_H

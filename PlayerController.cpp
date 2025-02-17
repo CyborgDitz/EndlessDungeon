@@ -1,6 +1,6 @@
 #include "PlayerController.h"
 #include "common.h"
-
+GameConfig gameConfig;
 void applyTileEffects(vector<vector<CellType>>& grid, Player& player, vector<TileEffect> effects) {
     for (TileEffect effect : effects) {
         switch (effect) {
@@ -45,14 +45,29 @@ void checkTileEffect(vector<vector<CellType>>& grid, Player& player) {
     }
 }
 
-
-void movePlayer(vector<vector<char>>& grid, Player& player, int directionX, int directionY) {
+void movePlayer(vector<vector<CellType>>& grid, Player& player, int directionY, int directionX) {
     int newX = player.x + directionX;
     int newY = player.y + directionY;
-    if (newX >= 0 && newX < GRID_SIZE && newY >= 0 && newY < GRID_SIZE && grid[newX][newY] != WALL) {
-        player.x = newX;
-        player.y = newY;
-    }
 
+
+    cout << "Attempting to move player from (" << player.x << ", " << player.y << ") to (" << newX << ", " << newY << ")\n";
+
+    if (newY >= 0 && newY < GRID_SIZE && newX >= 0 && newX < GRID_SIZE) {
+        cout << "Checking grid at (" << newY << ", " << newX << ") - ";
+        if (grid[newY][newX] != WALL) {
+            cout << "Valid move.\n";
+            player.x = newX;
+            player.y = newY;
+            checkTileEffect(grid, player);
+        } else {
+            cout << "Blocked by a wall!\n";
+        }
+    } else {
+        cout << "Out of bounds! Can't move there.\n";
+    }
 }
+
+
+
+
 
