@@ -1,16 +1,13 @@
 #include "PlayerController.h"
 #include <cstdio>
 #include "common.h"
-#include "data.h"
+#include "playerData.h"
+#include "DungeonGen.h"
 
 PlayerController::PlayerController()
     : player({ 64, 64 }, { gridCellSize.x, gridCellSize.y }, 100),
       speed(200.0f)
 {
-}
-
-PlayerController::~PlayerController() {
-    // No dynamic memory to clean up in this simple example.
 }
 
 CellType PlayerStandingOnCell(const player* p, const grid* g) {

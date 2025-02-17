@@ -1,15 +1,12 @@
 
 #ifndef PLAYER_CONTROLLER_H
 #define PLAYER_CONTROLLER_H
-#include "data.h"
-
+#include "playerData.h"
 
 class PlayerController {
 public:
 
     PlayerController();
-    ~PlayerController();
-
     void Update();
 
     void Draw();

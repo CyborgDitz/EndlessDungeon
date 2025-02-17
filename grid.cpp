@@ -1,10 +1,9 @@
-#include "data.h"
+
+#include "DungeonGen.h"
 
 void DrawGrid(const grid &myGrid) {
-
     for (size_t i = 0; i < myGrid.tiles.size(); ++i) {
         const tile &t = myGrid.tiles[i];
-
         Color fillColor = LIGHTGRAY;
         switch (myGrid.cellContents[i]) {
             case CELL_PLAYER: fillColor = BLUE;    break;
@@ -17,13 +16,17 @@ void DrawGrid(const grid &myGrid) {
     }
 
     int cols = static_cast<int>(myGrid.dimensions.x);
-    for (const dungBlock &db : myGrid.blocks) {
 
-        int cellIndex = db.y * cols + db.x;
+    for (const tile &db : myGrid.tiles) {
+        if (db.solid) {
 
-        Color blockColor = (myGrid.cellContents[cellIndex] == CELL_ENEMY) ? RED : DARKGRAY;
+            int cellIndex = db.y * cols + db.x;
 
-        Vector2 pos = { db.x * myGrid.tileSize.x, db.y * myGrid.tileSize.y };
-        DrawRectangleV(pos, myGrid.tileSize, blockColor);
+
+            Color blockColor = (myGrid.cellContents[cellIndex] == CELL_ENEMY) ? RED : DARKGRAY;
+
+            Vector2 pos = { db.x * myGrid.tileSize.x, db.y * myGrid.tileSize.y };
+            DrawRectangleV(pos, myGrid.tileSize, blockColor);
+        }
     }
 }
