@@ -7,8 +7,8 @@
 
 extern GameConfig gameConfig;
 
-void applyTileEffects(std::vector<std::vector<CellType>>& grid, Player& player, std::vector<TileEffect> effects);
-void checkTileEffect(std::vector<std::vector<CellType>>& grid, Player& player);
-void movePlayer(std::vector<std::vector<CellType>>& grid, Player& player, int directionY, int directionX);
-
+void applyTileEffects(Player& player, const std::vector<TileEffect>& effects);
+void checkTileEffect(Player& player);
+void movePlayer(Player& player, int directionY, int directionX);
+void updateHealth(const Player& player);
 #endif // PLAYER_CONTROLLER_H
