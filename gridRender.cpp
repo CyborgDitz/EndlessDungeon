@@ -1,11 +1,19 @@
 #include "gridRender.h"
 #include "playerData.h"
-
+void generateRandomGrid(vector<vector<CellType>>& grid) {
+    srand(time(0));
+    for (int i = 0; i < GRID_SIZE; i++) {
+        for (int j = 0; j < GRID_SIZE; j++) {
+            int randomTile = rand() % 6;
+            grid[i][j] = static_cast<CellType>(randomTile);
+        }
+    }
+}
 void drawPlayer(const Player& player) {
     DrawRectangle(player.y * TILE_SIZE, player.x * TILE_SIZE, TILE_SIZE, TILE_SIZE, PINK);
 }
 
-void drawGrid(const vector<vector<CellType>>& grid, const Player& player) {
+void drawGrid(const vector<vector<CellType>>& grid) {
     for (int i = 0; i < GRID_SIZE; i++) {
         for (int j = 0; j < GRID_SIZE; j++) {
             Color color;
@@ -21,6 +29,5 @@ void drawGrid(const vector<vector<CellType>>& grid, const Player& player) {
             DrawRectangleLines(j * TILE_SIZE, i * TILE_SIZE, TILE_SIZE, TILE_SIZE, BLACK);
         }
     }
-    drawPlayer(player);
 }
 

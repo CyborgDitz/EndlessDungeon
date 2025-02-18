@@ -16,7 +16,7 @@ int main() {
         }
         if (IsKeyPressed(KEY_S)) {
             movePlayer(grid, player, 0, 1);
-cout << "Move Down (increase Y) " << endl;
+            cout << "Move Down (increase Y) " << endl;
         }
         if (IsKeyPressed(KEY_A)) {
             movePlayer(grid, player, -1, 0);
@@ -30,7 +30,8 @@ cout << "Move Down (increase Y) " << endl;
 
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        drawGrid(grid, player);
+        drawPlayer(player);
+        drawGrid(grid);
         EndDrawing();
     }
 

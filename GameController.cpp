@@ -3,7 +3,7 @@
 //
 
 #include "GameController.h"
-
+/**
 void generateRandomGrid(vector<vector<CellType>>& grid) {
     srand(time(0));
     for (int i = 0; i < GRID_SIZE; i++) {
@@ -12,4 +12,4 @@ void generateRandomGrid(vector<vector<CellType>>& grid) {
             grid[i][j] = static_cast<CellType>(randTile);
         }
     }
-}
+}**/
