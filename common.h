@@ -39,5 +39,24 @@ typedef struct Tile {
 
     Tile(int x = 0, int y = 0, bool solid = false) : x(x), y(y), solid(solid) {}
 } tile;
-extern std::map<CellType, std::vector<TileEffect>> tileEffects;
+typedef struct Grid {
+    CellType cells[GRID_SIZE][GRID_SIZE];
+
+    Grid() {
+        for (int i = 0; i < GRID_SIZE; ++i) {
+            for (int j = 0; j < GRID_SIZE; ++j) {
+                cells[i][j] = EMPTY;
+            }
+        }
+    }
+} grid;
+
+using TileEffectsMap = std::map<CellType, std::vector<TileEffect>>;
+inline TileEffectsMap tileEffects = {
+    {TRAP, {DAMAGE_PLAYER, CLEAR_TILE}},
+    {LOOT, {HEAL_PLAYER, CLEAR_TILE}},
+    {ENEMY, {DAMAGE_PLAYER}},
+    {STAIRS, {NEXT_LEVEL}},
+    {WALL, {PUSH_PLAYER}},
+};
 #endif //COMMON_H
