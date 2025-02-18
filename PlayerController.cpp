@@ -1,5 +1,6 @@
 #include "PlayerController.h"
 #include "common.h"
+#include "gridRender.h"
 
 GameConfig gameConfig;
 
@@ -97,13 +98,16 @@ void movePlayer(Player& player, int directionX, int directionY) {
 void drawHealth(const Player& player) {
     char healthText[32];
     std::sprintf(healthText, "HP: %d", player.health);
-    Vector2 textPos = { static_cast<float>(player.x), static_cast<float>(player.y - 25) };
-    DrawText(healthText, static_cast<int>(textPos.x),
-             static_cast<int>(textPos.y), 20, BLACK);
+
+    int pixelX = player.x * TILE_SIZE;
+    int pixelY = player.y * TILE_SIZE - 25;
+    DrawText(healthText, pixelX, pixelY, 20, BLACK);
 }
+
 
 
 void updatePlayer(Player& player) {
     playerInput(player);
+    drawPlayer(player);
     drawHealth(player);
 }

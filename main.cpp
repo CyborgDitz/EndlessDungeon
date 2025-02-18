@@ -11,12 +11,12 @@ int main() {
 
     while (!WindowShouldClose()) {
 
-        updatePlayer( player);
+
 
         BeginDrawing();
         ClearBackground(RAYWHITE);
         drawGrid();
-        drawPlayer(player);
+        updatePlayer( player);
 
         EndDrawing();
     }

@@ -3,13 +3,15 @@
 #include "playerData.h"
 void generateRandomGrid() {
     srand(static_cast<unsigned>(time(nullptr)));
-for (int y = 0; y < GRID_SIZE; y++) {
-    for (int x = 0; x < GRID_SIZE; x++) {
-        int randomTile = rand() % 6;
-        grid.cells[y][x] = static_cast<CellType>(randomTile);
+    for (int y = 0; y < GRID_SIZE; y++) {
+        for (int x = 0; x < GRID_SIZE; x++) {
+            int randomTile = rand() % 6;
+            CellType tileType = static_cast<CellType>(randomTile);
+            grid.cells[y][x] = tileType;
         }
     }
 }
+
 
 void drawPlayer(const Player& player) {
         DrawRectangle(
@@ -45,10 +47,10 @@ void drawGrid() {
                 break;
                 case STAIRS:
                      if (tileCounters.stairsCount == 0) {
-                         color = GREEN;
+                         color = DARKGREEN;
                          tileCounters.stairsCount++;
                      } else if (tileCounters.stairsCount == 1) {
-                         color = DARKGREEN;
+                         color = GREEN;
                          tileCounters.stairsCount++;
                      } else {
                          continue;
