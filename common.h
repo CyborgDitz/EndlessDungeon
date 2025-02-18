@@ -81,7 +81,19 @@ static bool inBounds(int y, int x) {
     return (y >= 0 && y < GRID_SIZE &&
             x >= 0 && x < GRID_SIZE);
 }
+struct TileCounters {
+    int wallCount;
+    int trapCount;
+    int lootCount;
+    int enemyCount;
+    int stairsCount;
+    int emptyCount;
+
+    TileCounters()
+        : wallCount(0), trapCount(0), lootCount(0), enemyCount(0), stairsCount(0), emptyCount(0) {}
+};
 extern Grid grid;
+extern TileCounters tileCounters;
 
 typedef std::map<CellType, std::vector<TileEffect>> TileEffectsMap;
 

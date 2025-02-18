@@ -11,4 +11,5 @@ struct GameConfig {
     int healingFromLoot = 5;
 };
 
+
 #endif //GAMECONFIG_H
