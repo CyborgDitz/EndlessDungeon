@@ -5,8 +5,8 @@ void generateRandomGrid() {
     srand(static_cast<unsigned>(time(nullptr)));
 for (int y = 0; y < GRID_SIZE; y++) {
     for (int x = 0; x < GRID_SIZE; x++) {
-        int randTile = rand() % 6; // pick a random CellType 0..5
-        grid.cells[y][x] = static_cast<CellType>(randTile);
+        int randomTile = rand() % 6;
+        grid.cells[y][x] = static_cast<CellType>(randomTile);
     }
 }
 }
