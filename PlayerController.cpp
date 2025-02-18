@@ -56,27 +56,21 @@ void checkTileEffect(Player& player)
     }
 }
 
-void movePlayer(Player& player, int directionX, int directionY)
-{
+void movePlayer(Player& player, int directionX, int directionY) {
     int newX = player.x + directionX;
     int newY = player.y + directionY;
 
-    if (newY >= 0 && newY < GRID_SIZE &&
-        newX >= 0 && newX < GRID_SIZE)
-    {
-        if (grid.cells[newX][newY] != WALL) {
-            std::cout << "Valid move.\n";
+    if (inBounds(newY, newX)) {
+        if (grid.cells[newY][newX] != WALL) {
+            std::cout << "Moving player to (" << newX << ", " << newY << ")\n";
             player.x = newX;
             player.y = newY;
-
             checkTileEffect(player);
-        }
-        else {
+        } else {
             std::cout << "Blocked by a wall!\n";
         }
-    }
-    else {
-        std::cout << "Out of bounds! Can't move there.\n";
+    } else {
+        std::cout << "Out of bounds!\n";
     }
 }
 

@@ -1,11 +1,12 @@
 #include "gridRender.h"
+#include "common.h"
 #include "dungeonTree.h"
 #include "PlayerController.h"
 int main() {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Dungeon Tile Generator");
     SetTargetFPS(60);
-   //generateRandomGrid();
-    generateRandomGridGrowingTree();
+   generateRandomGrid();
+
     Player player = {5, 5, 100};
 
     while (!WindowShouldClose()) {

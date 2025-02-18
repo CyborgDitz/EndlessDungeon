@@ -4,6 +4,5 @@
 
 #ifndef DUNGEONTREE_H
 #define DUNGEONTREE_H
-void generateRandomGridGrowingTree();
 
 #endif //DUNGEONTREE_H
