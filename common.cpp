@@ -3,9 +3,9 @@
 Grid grid;
 
 TileEffectsMap tileEffects = {
+    {WALL,   {BLOCK_PLAYER}},
     {TRAP,   {DAMAGE_PLAYER, CLEAR_TILE}},
     {LOOT,   {HEAL_PLAYER,   CLEAR_TILE}},
-    {ENEMY,  {DAMAGE_PLAYER}},
+    {ENEMY,  {DAMAGE_PLAYER, PUSH_PLAYER, CLEAR_TILE}},
     {STAIRS, {NEXT_LEVEL}},
-    {WALL,   {PUSH_PLAYER}}
 };

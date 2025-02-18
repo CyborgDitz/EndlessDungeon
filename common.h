@@ -19,20 +19,21 @@ using namespace std;
 
 // Enums
 enum CellType {
-    WALL,
-    ENEMY,
-    LOOT,
+    WALL = 0,
     TRAP,
+    LOOT,
+    ENEMY,
     STAIRS,
     EMPTY
 };
 
 enum TileEffect {
-    CLEAR_TILE,
     DAMAGE_PLAYER,
     HEAL_PLAYER,
     PUSH_PLAYER,
-    NEXT_LEVEL
+    BLOCK_PLAYER,
+    NEXT_LEVEL,
+    CLEAR_TILE
 };
 
 
@@ -57,7 +58,10 @@ typedef struct Grid {
     }
 } Grid;
 
-
+static bool inBounds(int y, int x) {
+    return (y >= 0 && y < GRID_SIZE &&
+            x >= 0 && x < GRID_SIZE);
+}
 extern Grid grid;
 
 typedef std::map<CellType, std::vector<TileEffect>> TileEffectsMap;
