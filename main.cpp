@@ -7,32 +7,17 @@ int main() {
     SetTargetFPS(60);
    generateRandomGrid();
 
-    Player player = {5, 5, 100};
+    Player player = {0, 0, 100};
 
     while (!WindowShouldClose()) {
 
-        if (IsKeyPressed(KEY_W)) {
-            movePlayer(player, 0, -1);
-            cout << "Move Up (decrease Y) " << endl;
-        }
-        if (IsKeyPressed(KEY_S)) {
-            movePlayer(player, 0, 1);
-            cout << "Move Down (increase Y) " << endl;
-        }
-        if (IsKeyPressed(KEY_A)) {
-            movePlayer(player, -1, 0);
-            cout << "Move left (decrease x) " << endl;
-        }
-        if (IsKeyPressed(KEY_D)) {
-            movePlayer(player, 1, 0);
-            cout << "Move right (increase x) " << endl;
-        }
-
+        updatePlayer( player);
 
         BeginDrawing();
         ClearBackground(RAYWHITE);
         drawGrid();
         drawPlayer(player);
+
         EndDrawing();
     }
 

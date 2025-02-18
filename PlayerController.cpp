@@ -1,6 +1,9 @@
 #include "PlayerController.h"
 #include "common.h"
-GameConfig gameConfig;void applyTileEffects(Player& player, const std::vector<TileEffect>& effects)
+
+GameConfig gameConfig;
+
+void applyTileEffects(Player& player, const std::vector<TileEffect>& effects)
 {
     for (TileEffect effect : effects)
     {
@@ -55,7 +58,24 @@ void checkTileEffect(Player& player)
         applyTileEffects(player, it->second);
     }
 }
-
+void playerInput(Player& player) {
+    if (IsKeyPressed(KEY_W)) {
+        movePlayer(player, 0, -1);
+        std::cout << "Move Up (decrease Y)\n";
+    }
+    if (IsKeyPressed(KEY_S)) {
+        movePlayer(player, 0, 1);
+        std::cout << "Move Down (increase Y)\n";
+    }
+    if (IsKeyPressed(KEY_A)) {
+        movePlayer(player, -1, 0);
+        std::cout << "Move left (decrease X)\n";
+    }
+    if (IsKeyPressed(KEY_D)) {
+        movePlayer(player, 1, 0);
+        std::cout << "Move right (increase X)\n";
+    }
+}
 void movePlayer(Player& player, int directionX, int directionY) {
     int newX = player.x + directionX;
     int newY = player.y + directionY;
@@ -74,10 +94,16 @@ void movePlayer(Player& player, int directionX, int directionY) {
     }
 }
 
-void updateHealth(const Player& player) {
+void drawHealth(const Player& player) {
     char healthText[32];
     std::sprintf(healthText, "HP: %d", player.health);
-    Vector2 textPos = { (float)player.x, (float)player.y - 25 };
+    Vector2 textPos = { static_cast<float>(player.x), static_cast<float>(player.y - 25) };
     DrawText(healthText, static_cast<int>(textPos.x),
              static_cast<int>(textPos.y), 20, BLACK);
+}
+
+
+void updatePlayer(Player& player) {
+    playerInput(player);
+    drawHealth(player);
 }
