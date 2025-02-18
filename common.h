@@ -35,7 +35,7 @@ enum TileEffect {
     NEXT_LEVEL
 };
 
-// Tile struct
+
 typedef struct Tile {
     int x;
     int y;
@@ -45,7 +45,6 @@ typedef struct Tile {
         : x(x), y(y), solid(solid) {}
 } Tile;
 
-// Grid struct
 typedef struct Grid {
     CellType cells[GRID_SIZE][GRID_SIZE];
 
@@ -58,13 +57,11 @@ typedef struct Grid {
     }
 } Grid;
 
-// Declare a global Grid instance (defined in common.cpp)
-extern Grid gGrid;
 
-// Use typedef instead of 'using' for the map
+extern Grid grid;
+
 typedef std::map<CellType, std::vector<TileEffect>> TileEffectsMap;
 
-// Declare a global TileEffectsMap instance (defined in common.cpp)
-extern TileEffectsMap gTileEffects;
+extern TileEffectsMap tileEffects;
 
 #endif // COMMON_H

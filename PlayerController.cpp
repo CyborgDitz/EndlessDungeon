@@ -1,73 +1,89 @@
 #include "PlayerController.h"
 #include "common.h"
-GameConfig gameConfig;
-void applyTileEffects(vector<vector<CellType>>& grid, Player& player, vector<TileEffect> effects) {
-    for (TileEffect effect : effects) {
-        switch (effect) {
-            case CLEAR_TILE:
-                grid[player.x][player.y] = EMPTY;
-            cout << "Tile cleared!\n";
+GameConfig gameConfig;void applyTileEffects(Player& player, const std::vector<TileEffect>& effects)
+{
+    for (TileEffect effect : effects)
+    {
+        switch (effect)
+        {
+        case CLEAR_TILE:
+            // Clear the tile the player is on
+            grid.cells[player.y][player.x] = EMPTY;
+            std::cout << "Tile cleared!\n";
             break;
 
-            case DAMAGE_PLAYER:
-                if (grid[player.x][player.y] == TRAP) {
+        case DAMAGE_PLAYER:
+            {
+                CellType currentTile = grid.cells[player.y][player.x];
+                if (currentTile == TRAP) {
                     player.health -= gameConfig.damageFromTrap;
-                    cout << "Player stepped on a trap! Health -" << gameConfig.damageFromTrap << "\n";
-                } else if (grid[player.x][player.y] == ENEMY) {
+                    std::cout << "Player stepped on a trap! Health -"
+                              << gameConfig.damageFromTrap << "\n";
+                } else if (currentTile == ENEMY) {
                     player.health -= gameConfig.damageFromEnemy;
-                    cout << "Bonked an enemy! Health -" << gameConfig.damageFromEnemy << "\n";
+                    std::cout << "Bonked an enemy! Health -"
+                              << gameConfig.damageFromEnemy << "\n";
                 }
+            }
             break;
 
-            case HEAL_PLAYER:
-                player.health += gameConfig.healingFromLoot;
-            cout << "Player found loot! Health +" << gameConfig.healingFromLoot << "\n";
+        case HEAL_PLAYER:
+            player.health += gameConfig.healingFromLoot;
+            std::cout << "Player found loot! Health +"
+                      << gameConfig.healingFromLoot << "\n";
             break;
 
-            case PUSH_PLAYER:
-                cout << "Player bumped into a wall and was pushed back!\n";
-            //todo Push logic could be added here
+        case PUSH_PLAYER:
+            std::cout << "Player bumped into a wall and was pushed back!\n";
+            // TODO: Add push logic here
             break;
 
-            case NEXT_LEVEL:
-                cout << "You found the stairs! Moving to the next level.\n";
-            //todo  Level transition logic
+        case NEXT_LEVEL:
+            std::cout << "You found the stairs! Moving to the next level.\n";
+            // TODO: Level transition logic
             break;
         }
     }
 }
 
-void checkTileEffect(vector<vector<CellType>>& grid, Player& player) {
-    CellType currentTile = grid[player.x][player.y];
+void checkTileEffect(Player& player)
+{
+    CellType currentTile = grid.cells[player.y][player.x];
 
-    if (tileEffects.find(currentTile) != tileEffects.end()) {
-        applyTileEffects(grid, player, tileEffects[currentTile]);
+    auto it = tileEffects.find(currentTile);
+    if (it != tileEffects.end()) {
+        applyTileEffects(player, it->second);
     }
 }
 
-void movePlayer(vector<vector<CellType>>& grid, Player& player, int directionY, int directionX) {
+void movePlayer(Player& player, int directionX, int directionY)
+{
     int newX = player.x + directionX;
     int newY = player.y + directionY;
 
-
-    cout << "Attempting to move player from (" << player.x << ", " << player.y << ") to (" << newX << ", " << newY << ")\n";
-
-    if (newY >= 0 && newY < GRID_SIZE && newX >= 0 && newX < GRID_SIZE) {
-        cout << "Checking grid at (" << newY << ", " << newX << ") - ";
-        if (grid[newY][newX] != WALL) {
-            cout << "Valid move.\n";
+    if (newY >= 0 && newY < GRID_SIZE &&
+        newX >= 0 && newX < GRID_SIZE)
+    {
+        if (grid.cells[newX][newY] != WALL) {
+            std::cout << "Valid move.\n";
             player.x = newX;
             player.y = newY;
-            checkTileEffect(grid, player);
-        } else {
-            cout << "Blocked by a wall!\n";
+
+            checkTileEffect(player);
         }
-    } else {
-        cout << "Out of bounds! Can't move there.\n";
+        else {
+            std::cout << "Blocked by a wall!\n";
+        }
+    }
+    else {
+        std::cout << "Out of bounds! Can't move there.\n";
     }
 }
 
-
-
-
-
+void updateHealth(const Player& player) {
+    char healthText[32];
+    std::sprintf(healthText, "HP: %d", player.health);
+    Vector2 textPos = { (float)player.x, (float)player.y - 25 };
+    DrawText(healthText, static_cast<int>(textPos.x),
+             static_cast<int>(textPos.y), 20, BLACK);
+}

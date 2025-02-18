@@ -1,8 +1,8 @@
 #include "common.h"
 
-Grid gGrid;
+Grid grid;
 
-TileEffectsMap gTileEffects = {
+TileEffectsMap tileEffects = {
     {TRAP,   {DAMAGE_PLAYER, CLEAR_TILE}},
     {LOOT,   {HEAL_PLAYER,   CLEAR_TILE}},
     {ENEMY,  {DAMAGE_PLAYER}},
