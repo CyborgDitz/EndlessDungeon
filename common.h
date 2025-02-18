@@ -1,6 +1,6 @@
-
 #ifndef COMMON_H
 #define COMMON_H
+
 #include "raylib.h"
 #include "raymath.h"
 #include "gameConfig.h"
@@ -9,13 +9,15 @@
 #include <ctime>
 #include <iostream>
 
+// Constants
+static const int GRID_SIZE = 8;
+static const int TILE_SIZE = 64;
+static const int SCREEN_WIDTH = GRID_SIZE * TILE_SIZE;
+static const int SCREEN_HEIGHT = GRID_SIZE * TILE_SIZE;
 
-const int GRID_SIZE = 8;
-const int TILE_SIZE = 64;
-const int SCREEN_WIDTH = GRID_SIZE * TILE_SIZE;
-const int SCREEN_HEIGHT = GRID_SIZE * TILE_SIZE;
 using namespace std;
 
+// Enums
 enum CellType {
     WALL,
     ENEMY,
@@ -33,12 +35,17 @@ enum TileEffect {
     NEXT_LEVEL
 };
 
+// Tile struct
 typedef struct Tile {
-    int x, y;
+    int x;
+    int y;
     bool solid;
 
-    Tile(int x = 0, int y = 0, bool solid = false) : x(x), y(y), solid(solid) {}
-} tile;
+    Tile(int x = 0, int y = 0, bool solid = false)
+        : x(x), y(y), solid(solid) {}
+} Tile;
+
+// Grid struct
 typedef struct Grid {
     CellType cells[GRID_SIZE][GRID_SIZE];
 
@@ -49,14 +56,15 @@ typedef struct Grid {
             }
         }
     }
-} grid;
+} Grid;
 
-using TileEffectsMap = std::map<CellType, std::vector<TileEffect>>;
-inline TileEffectsMap tileEffects = {
-    {TRAP, {DAMAGE_PLAYER, CLEAR_TILE}},
-    {LOOT, {HEAL_PLAYER, CLEAR_TILE}},
-    {ENEMY, {DAMAGE_PLAYER}},
-    {STAIRS, {NEXT_LEVEL}},
-    {WALL, {PUSH_PLAYER}},
-};
-#endif //COMMON_H
+// Declare a global Grid instance (defined in common.cpp)
+extern Grid gGrid;
+
+// Use typedef instead of 'using' for the map
+typedef std::map<CellType, std::vector<TileEffect>> TileEffectsMap;
+
+// Declare a global TileEffectsMap instance (defined in common.cpp)
+extern TileEffectsMap gTileEffects;
+
+#endif // COMMON_H
