@@ -3,8 +3,8 @@
 #include <ctime>
 #include "playerData.h"
 #include "common.h"
-void generateRandomGrid(vector<vector<CellType>>& grid);
+void generateRandomGrid();
 void drawPlayer(const Player& player);
-void drawGrid(const vector<vector<CellType>>& grid);
+void drawGrid();
 
 #endif // GRID_H
