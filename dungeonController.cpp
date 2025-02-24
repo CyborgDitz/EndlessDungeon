@@ -31,18 +31,18 @@ void generateMazeDungeon() {
     grid.cells[startY][startX] = EMPTY;
 
     // The growing tree algorithm uses a list of active cells.
-    std::vector<std::pair<int,int>> cellList;
+    vector<pair<int,int>> cellList;
     cellList.push_back({startY, startX});
 
     while (!cellList.empty()) {
         // For a depth-first search behavior, select the most recently added cell.
         int index = cellList.size() - 1;
-        std::pair<int,int> current = cellList[index];
+        pair<int,int> current = cellList[index];
         int cy = current.first;
         int cx = current.second;
 
         // Find all unvisited neighbors two cells away.
-        std::vector<std::pair<int,int>> neighbors;
+        vector<pair<int,int>> neighbors;
 
         // Up: check cell two steps up.
         if (cy - 2 > 0 && grid.cells[cy - 2][cx] == WALL)
@@ -63,7 +63,7 @@ void generateMazeDungeon() {
         if (!neighbors.empty()) {
             // Randomly select one of the unvisited neighbors.
             int randIndex = rand() % neighbors.size();
-            std::pair<int,int> nextCell = neighbors[randIndex];
+            pair<int,int> nextCell = neighbors[randIndex];
             int ny = nextCell.first;
             int nx = nextCell.second;
 
