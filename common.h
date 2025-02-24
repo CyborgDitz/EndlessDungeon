@@ -95,7 +95,7 @@ struct TileCounters {
 extern Grid grid;
 extern TileCounters tileCounters;
 
-typedef std::map<CellType, std::vector<TileEffect>> TileEffectsMap;
+typedef map<CellType, vector<TileEffect>> TileEffectsMap;
 
 extern TileEffectsMap tileEffects;
 

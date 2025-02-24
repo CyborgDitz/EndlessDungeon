@@ -73,14 +73,6 @@ build CMakeFiles/EndlessDungeon.dir/gridRender.cpp.obj: CXX_COMPILER__EndlessDun
   OBJECT_DIR = CMakeFiles\EndlessDungeon.dir
   OBJECT_FILE_DIR = CMakeFiles\EndlessDungeon.dir
 
-build CMakeFiles/EndlessDungeon.dir/dungeonTree.cpp.obj: CXX_COMPILER__EndlessDungeon_unscanned_Debug C$:/Projects/C++Projects/EndlessDungeon/dungeonTree.cpp || cmake_object_order_depends_target_EndlessDungeon
-  DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
-  DEP_FILE = CMakeFiles\EndlessDungeon.dir\dungeonTree.cpp.obj.d
-  FLAGS = -g -std=gnu++20 -fdiagnostics-color=always
-  INCLUDES = -IC:/raylib/raylib/src -IC:/raylib/raylib/src/external/glfw/include
-  OBJECT_DIR = CMakeFiles\EndlessDungeon.dir
-  OBJECT_FILE_DIR = CMakeFiles\EndlessDungeon.dir
-
 build CMakeFiles/EndlessDungeon.dir/common.cpp.obj: CXX_COMPILER__EndlessDungeon_unscanned_Debug C$:/Projects/C++Projects/EndlessDungeon/common.cpp || cmake_object_order_depends_target_EndlessDungeon
   DEFINES = -DGRAPHICS_API_OPENGL_33 -DPLATFORM_DESKTOP
   DEP_FILE = CMakeFiles\EndlessDungeon.dir\common.cpp.obj.d
@@ -97,7 +89,7 @@ build CMakeFiles/EndlessDungeon.dir/common.cpp.obj: CXX_COMPILER__EndlessDungeon
 #############################################
 # Link the executable EndlessDungeon.exe
 
-build EndlessDungeon.exe: CXX_EXECUTABLE_LINKER__EndlessDungeon_Debug CMakeFiles/EndlessDungeon.dir/main.cpp.obj CMakeFiles/EndlessDungeon.dir/PlayerController.cpp.obj CMakeFiles/EndlessDungeon.dir/gridRender.cpp.obj CMakeFiles/EndlessDungeon.dir/dungeonTree.cpp.obj CMakeFiles/EndlessDungeon.dir/common.cpp.obj | raylib_build/raylib/libraylib.a || raylib_build/raylib/external/glfw/src/glfw raylib_build/raylib/libraylib.a
+build EndlessDungeon.exe: CXX_EXECUTABLE_LINKER__EndlessDungeon_Debug CMakeFiles/EndlessDungeon.dir/main.cpp.obj CMakeFiles/EndlessDungeon.dir/PlayerController.cpp.obj CMakeFiles/EndlessDungeon.dir/gridRender.cpp.obj CMakeFiles/EndlessDungeon.dir/common.cpp.obj | raylib_build/raylib/libraylib.a || raylib_build/raylib/external/glfw/src/glfw raylib_build/raylib/libraylib.a
   FLAGS = -g
   LINK_LIBRARIES = raylib_build/raylib/libraylib.a  -lopengl32  -lglu32  -lwinmm  -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\EndlessDungeon.dir

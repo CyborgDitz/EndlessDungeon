@@ -62,19 +62,15 @@ void checkTileEffect(Player& player)
 void playerInput(Player& player) {
     if (IsKeyPressed(KEY_W)) {
         movePlayer(player, 0, -1);
-        std::cout << "Move Up (decrease Y)\n";
     }
     if (IsKeyPressed(KEY_S)) {
         movePlayer(player, 0, 1);
-        std::cout << "Move Down (increase Y)\n";
     }
     if (IsKeyPressed(KEY_A)) {
         movePlayer(player, -1, 0);
-        std::cout << "Move left (decrease X)\n";
     }
     if (IsKeyPressed(KEY_D)) {
         movePlayer(player, 1, 0);
-        std::cout << "Move right (increase X)\n";
     }
 }
 void movePlayer(Player& player, int directionX, int directionY) {
@@ -83,16 +79,13 @@ void movePlayer(Player& player, int directionX, int directionY) {
 
     if (inBounds(newY, newX)) {
         if (grid.cells[newY][newX] != WALL) {
-            std::cout << "Moving player to (" << newX << ", " << newY << ")\n";
             player.x = newX;
             player.y = newY;
             checkTileEffect(player);
-        } else {
-            std::cout << "Blocked by a wall!\n";
         }
-    } else {
-        std::cout << "Out of bounds!\n";
+
     }
+
 }
 
 void drawHealth(const Player& player) {
