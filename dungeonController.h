@@ -4,5 +4,6 @@
 #define DUNGEONCONTROLLER_H
 
 void generateRandomGrid();
+void generateMazeDungeon();
 
 #endif //DUNGEONCONTROLLER_H

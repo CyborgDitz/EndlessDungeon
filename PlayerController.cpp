@@ -4,7 +4,7 @@
 
 GameConfig gameConfig;
 
-void applyTileEffects(Player& player, const std::vector<TileEffect>& effects)
+void applyTileEffects(Player& player, const vector<TileEffect>& effects)
 {
     for (TileEffect effect : effects)
     {
@@ -90,7 +90,7 @@ void movePlayer(Player& player, int directionX, int directionY) {
 
 void drawHealth(const Player& player) {
     char healthText[32];
-    std::sprintf(healthText, "HP: %d", player.health);
+   sprintf(healthText, "HP: %d", player.health);
 
     int pixelX = player.x * TILE_SIZE;
     int pixelY = player.y * TILE_SIZE - 25;

@@ -5,13 +5,14 @@
 int main() {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Dungeon Tile Generator");
     SetTargetFPS(60);
-   generateRandomGrid();
 
-    Player player = {0, 0, 100};
+    generateMazeDungeon();
+
+    Player player = {1, 1, 100};
 
     while (!WindowShouldClose()) {
 
-
+        if (IsKeyDown(KEY_SPACE)) { generateMazeDungeon();}
 
         BeginDrawing();
         ClearBackground(RAYWHITE);

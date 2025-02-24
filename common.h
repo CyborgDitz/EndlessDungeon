@@ -9,15 +9,14 @@
 #include <ctime>
 #include <iostream>
 
-// Constants
-static const int GRID_SIZE = 8;
-static const int TILE_SIZE = 64;
+
+static const int GRID_SIZE = 33;
+static const int TILE_SIZE = 28;
 static const int SCREEN_WIDTH = GRID_SIZE * TILE_SIZE;
 static const int SCREEN_HEIGHT = GRID_SIZE * TILE_SIZE;
 
 using namespace std;
 
-// Enums
 enum CellType {
     WALL = 0,
     TRAP,
