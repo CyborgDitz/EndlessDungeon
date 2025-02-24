@@ -3,7 +3,7 @@
 #include <ctime>
 #include "playerData.h"
 #include "common.h"
-void generateRandomGrid();
+
 void drawPlayer(const Player& player);
 void drawGrid();
 

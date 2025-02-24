@@ -1,6 +1,6 @@
 #include "gridRender.h"
 #include "common.h"
-#include "dungeonTree.h"
+#include "dungeonController.h"
 #include "PlayerController.h"
 int main() {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Dungeon Tile Generator");

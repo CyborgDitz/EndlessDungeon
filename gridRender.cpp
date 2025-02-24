@@ -1,27 +1,8 @@
 #include "gridRender.h"
 #include "common.h"
 #include "playerData.h"
-void generateRandomGrid() {
-    srand(static_cast<unsigned>(time(nullptr)));
-    for (int y = 0; y < GRID_SIZE; y++) {
-        for (int x = 0; x < GRID_SIZE; x++) {
-            int randomTile = rand() % 6;
-            CellType tileType = static_cast<CellType>(randomTile);
-            grid.cells[y][x] = tileType;
-        }
-    }
-}
+#include "dungeonController.h"
 
-
-void drawPlayer(const Player& player) {
-        DrawRectangle(
-            player.x * TILE_SIZE,
-            player.y * TILE_SIZE,
-            TILE_SIZE,
-            TILE_SIZE,
-            PINK
-        );
-    }
 void drawGrid() {
     tileCounters = TileCounters();
 
@@ -68,4 +49,12 @@ void drawGrid() {
         }
     }
 }
-
+void drawPlayer(const Player& player) {
+    DrawRectangle(
+        player.x * TILE_SIZE,
+        player.y * TILE_SIZE,
+        TILE_SIZE,
+        TILE_SIZE,
+        PINK
+    );
+}
