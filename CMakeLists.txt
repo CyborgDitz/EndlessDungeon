@@ -12,10 +12,11 @@ add_subdirectory("C:/raylib/raylib" raylib_build)
 
 # Create an executable using main.cpp.
 add_executable(EndlessDungeon main.cpp
-        PlayerController.cpp
+        playerController.cpp
         gridRender.cpp
         dungeonController.cpp
         common.cpp
+        game.cpp
 )
 
 

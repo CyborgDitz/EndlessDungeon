@@ -49,12 +49,3 @@ void drawGrid() {
         }
     }
 }
-void drawPlayer(const Player& player) {
-    DrawRectangle(
-        player.x * TILE_SIZE,
-        player.y * TILE_SIZE,
-        TILE_SIZE,
-        TILE_SIZE,
-        PINK
-    );
-}

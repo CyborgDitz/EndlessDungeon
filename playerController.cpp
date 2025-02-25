@@ -4,7 +4,7 @@
 
 GameConfig gameConfig;
 
-void applyTileEffects(Player& player, const vector<TileEffect>& effects)
+void applyTileEffects(Player& player, const std::vector<TileEffect>& effects)
 {
     for (TileEffect effect : effects)
     {
@@ -81,11 +81,8 @@ void movePlayer(Player& player, int directionX, int directionY) {
         if (grid.cells[newY][newX] != WALL) {
             player.x = newX;
             player.y = newY;
-            checkTileEffect(player);
         }
-
     }
-
 }
 
 void drawHealth(const Player& player) {
@@ -97,10 +94,18 @@ void drawHealth(const Player& player) {
     DrawText(healthText, pixelX, pixelY, 20, BLACK);
 }
 
+void drawPlayer(const Player& player) {
+    DrawRectangle(
+        player.x * TILE_SIZE,
+        player.y * TILE_SIZE,
+        TILE_SIZE,
+        TILE_SIZE,
+        PINK
+    );
+}
 
 
 void updatePlayer(Player& player) {
     playerInput(player);
-    drawPlayer(player);
-    drawHealth(player);
+    checkTileEffect(player);
 }

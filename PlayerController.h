@@ -7,7 +7,7 @@
 #include "gameConfig.h"
 
 extern GameConfig gameConfig;
-
+void drawPlayer(const Player& player);
 void applyTileEffects(Player& player, const std::vector<TileEffect>& effects);
 void checkTileEffect(Player& player);
 void drawHealth(const Player& player);

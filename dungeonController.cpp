@@ -37,7 +37,7 @@ void countTiles() {
 }void fillEmptyCells() {
     forEachCell([](int x, int y) {
         if (grid.cells[y][x] == EMPTY) {
-            cout << "Empty tile found at: (" << x << ", " << y << ")\n";
+            std::cout << "Empty tile found at: (" << x << ", " << y << ")\n";
         }
     });
     countTiles();
@@ -68,16 +68,16 @@ void generateMazeDungeon(int playerX, int playerY) {
         int startX = 1, startY = 1;
         grid.cells[startY][startX] = EMPTY;
 
-        vector<pair<int,int>> cellList;
+        std::vector<std::pair<int,int>> cellList;
         cellList.push_back({startY, startX});
 
         while (!cellList.empty()) {
             int index = cellList.size() - 1;
-            pair<int,int> current = cellList[index];
+            std::pair<int,int> current = cellList[index];
             int cy = current.first;
             int cx = current.second;
 
-            vector<pair<int,int>> neighbors;
+            std::vector<std::pair<int,int>> neighbors;
 
             if (cy - 2 > 0 && grid.cells[cy - 2][cx] == WALL)
                 neighbors.push_back({cy - 2, cx});
@@ -90,7 +90,7 @@ void generateMazeDungeon(int playerX, int playerY) {
 
             if (!neighbors.empty()) {
                 int randIndex = rand() % neighbors.size();
-                pair<int,int> nextCell = neighbors[randIndex];
+                std::pair<int,int> nextCell = neighbors[randIndex];
                 int ny = nextCell.first;
                 int nx = nextCell.second;
 

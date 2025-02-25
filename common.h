@@ -15,8 +15,6 @@ static const int TILE_SIZE = 28;
 static const int SCREEN_WIDTH = GRID_SIZE * TILE_SIZE;
 static const int SCREEN_HEIGHT = GRID_SIZE * TILE_SIZE;
 
-using namespace std;
-
 enum CellType {
     WALL = 0,
     TRAP,
@@ -46,6 +44,7 @@ typedef struct Grid {
         }
     }
 } Grid;
+
 struct TileCounters {
     int wallCount;
     int trapCount;
@@ -57,9 +56,9 @@ struct TileCounters {
     TileCounters()
         : wallCount(0), trapCount(0), lootCount(0), enemyCount(0), stairsCount(0), emptyCount(0) {}
 };
+
 static bool inBounds(int y, int x) {
-    return (y >= 0 && y < GRID_SIZE &&
-            x >= 0 && x < GRID_SIZE);
+    return (y >= 0 && y < GRID_SIZE && x >= 0 && x < GRID_SIZE);
 }
 
 template<typename Func>
@@ -74,8 +73,7 @@ void forEachCell(Func func) {
 extern Grid grid;
 extern TileCounters tileCounters;
 
-typedef map<CellType, vector<TileEffect>> TileEffectsMap;
-
+typedef std::map<CellType, std::vector<TileEffect>> TileEffectsMap;
 extern TileEffectsMap tileEffects;
 
 #endif // COMMON_H
