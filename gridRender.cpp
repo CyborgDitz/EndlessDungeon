@@ -1,14 +1,12 @@
 #include "gridRender.h"
-#include "common.h"
-#include "playerData.h"
-#include "dungeonController.h"
+
 
 void drawGrid() {
     tileCounters = TileCounters();
 
     for (int y = 0; y < GRID_SIZE; y++) {
         for (int x = 0; x < GRID_SIZE; x++) {
-            Color color = WHITE;
+            auto color = WHITE;
             switch (grid.cells[y][x]) {
                 case WALL:
                     color = DARKGRAY;

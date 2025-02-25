@@ -3,8 +3,10 @@
 #include <ctime>
 #include "playerData.h"
 #include "common.h"
+#include "playerData.h"
+#include "dungeonController.h"
 
 void drawPlayer(const Player& player);
 void drawGrid();
 
-#endif // GRID_H
+#endif // GRID_RENDER_H

@@ -46,6 +46,9 @@ void applyTileEffects(Player& player, const std::vector<TileEffect>& effects)
             std::cout << "You found the stairs! Moving to the next level.\n";
             // TODO: Level transition logic
             break;
+            default:
+
+                break;
         }
     }
 }
