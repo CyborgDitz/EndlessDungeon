@@ -317,30 +317,6 @@ dungeonController.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/dungeonController.cpp.s
 .PHONY : dungeonController.cpp.s
 
-gameController.obj: gameController.cpp.obj
-.PHONY : gameController.obj
-
-# target to build an object file
-gameController.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/gameController.cpp.obj
-.PHONY : gameController.cpp.obj
-
-gameController.i: gameController.cpp.i
-.PHONY : gameController.i
-
-# target to preprocess a source file
-gameController.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/gameController.cpp.i
-.PHONY : gameController.cpp.i
-
-gameController.s: gameController.cpp.s
-.PHONY : gameController.s
-
-# target to generate assembly for a file
-gameController.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/gameController.cpp.s
-.PHONY : gameController.cpp.s
-
 gridRender.obj: gridRender.cpp.obj
 .PHONY : gridRender.obj
 
@@ -417,9 +393,6 @@ help:
 	@echo ... dungeonController.obj
 	@echo ... dungeonController.i
 	@echo ... dungeonController.s
-	@echo ... gameController.obj
-	@echo ... gameController.i
-	@echo ... gameController.s
 	@echo ... gridRender.obj
 	@echo ... gridRender.i
 	@echo ... gridRender.s

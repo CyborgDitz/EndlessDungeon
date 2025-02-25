@@ -16,8 +16,6 @@ add_executable(EndlessDungeon main.cpp
         gridRender.cpp
         dungeonController.cpp
         common.cpp
-        gameController.cpp
-        gameController.h
 )
 
 
