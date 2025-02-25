@@ -35,35 +35,6 @@ enum TileEffect {
     CLEAR_TILE
 };
 
-
-typedef struct {
-    int  x;
-    int  y;
-    bool visitedCell;
-    bool visitedPath;
-    bool foundPath;
-    bool walls[4];
-    bool solid;
-    CellType type;
-} Tile;
-
-static Tile createTile(int x, int y, bool solid, CellType type) {
-    Tile tile;
-    tile.x = x;
-    tile.y = y;
-    tile.solid = solid;
-    tile.visitedCell = false;
-    tile.visitedPath = false;
-    tile.foundPath = false;
-    tile.walls[0] = true;
-    tile.walls[1] = true;
-    tile.walls[2] = true;
-    tile.walls[3] = true;
-    tile.type = type;
-    return tile;
-}
-
-
 typedef struct Grid {
     CellType cells[GRID_SIZE][GRID_SIZE];
 
