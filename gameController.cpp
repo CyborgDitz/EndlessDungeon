@@ -3,3 +3,9 @@
 //
 
 #include "gameController.h"
+
+void dungeonSetup() {
+    generateRandomGrid();
+    generateMazeDungeon();
+    fillEmptyCells();
+}

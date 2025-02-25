@@ -8,5 +8,6 @@
 #include "dungeonController.h"
 #include "playerController.h"
 
+void dungeonSetup();
 
 #endif //GAMECONTROLLER_H
