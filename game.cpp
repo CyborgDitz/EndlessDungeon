@@ -27,8 +27,6 @@ void Game::HandleInput() {
 
 void Game::PlayerUpdate() {
     updatePlayer(player);
-    drawPlayer(player);
-    drawHealth(player);
 }
 
 void Game::Render() {
@@ -43,8 +41,7 @@ void Game::Render() {
 void Game::Run() {
     while (!WindowShouldClose()) {
         HandleInput();
-
+        PlayerUpdate();
         Render();
-
     }
 }
