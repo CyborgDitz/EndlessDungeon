@@ -380,8 +380,8 @@
 	"kind" : "cmakeFiles",
 	"paths" : 
 	{
-		"build" : "C:/Projects/C++Projects/EndlessDungeon/cmake-build-debug",
-		"source" : "C:/Projects/C++Projects/EndlessDungeon"
+		"build" : "C:/Projects/C++/EndlessDungeon/cmake-build-debug",
+		"source" : "C:/Projects/C++/EndlessDungeon"
 	},
 	"version" : 
 	{

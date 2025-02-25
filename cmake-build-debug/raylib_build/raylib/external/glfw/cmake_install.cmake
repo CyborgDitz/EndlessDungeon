@@ -39,6 +39,6 @@ endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for the subdirectory.
-  include("C:/Projects/C++Projects/EndlessDungeon/cmake-build-debug/raylib_build/raylib/external/glfw/src/cmake_install.cmake")
+  include("C:/Projects/C++/EndlessDungeon/cmake-build-debug/raylib_build/raylib/external/glfw/src/cmake_install.cmake")
 endif()
 

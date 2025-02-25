@@ -245,30 +245,6 @@ update_mappings/fast:
 	$(MAKE) $(MAKESILENT) -f raylib_build\raylib\external\glfw\src\CMakeFiles\update_mappings.dir\build.make raylib_build/raylib/external/glfw/src/CMakeFiles/update_mappings.dir/build
 .PHONY : update_mappings/fast
 
-GameController.obj: GameController.cpp.obj
-.PHONY : GameController.obj
-
-# target to build an object file
-GameController.cpp.obj:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/GameController.cpp.obj
-.PHONY : GameController.cpp.obj
-
-GameController.i: GameController.cpp.i
-.PHONY : GameController.i
-
-# target to preprocess a source file
-GameController.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/GameController.cpp.i
-.PHONY : GameController.cpp.i
-
-GameController.s: GameController.cpp.s
-.PHONY : GameController.s
-
-# target to generate assembly for a file
-GameController.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/GameController.cpp.s
-.PHONY : GameController.cpp.s
-
 PlayerController.obj: PlayerController.cpp.obj
 .PHONY : PlayerController.obj
 
@@ -316,6 +292,54 @@ common.s: common.cpp.s
 common.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/common.cpp.s
 .PHONY : common.cpp.s
+
+dungeonController.obj: dungeonController.cpp.obj
+.PHONY : dungeonController.obj
+
+# target to build an object file
+dungeonController.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/dungeonController.cpp.obj
+.PHONY : dungeonController.cpp.obj
+
+dungeonController.i: dungeonController.cpp.i
+.PHONY : dungeonController.i
+
+# target to preprocess a source file
+dungeonController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/dungeonController.cpp.i
+.PHONY : dungeonController.cpp.i
+
+dungeonController.s: dungeonController.cpp.s
+.PHONY : dungeonController.s
+
+# target to generate assembly for a file
+dungeonController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/dungeonController.cpp.s
+.PHONY : dungeonController.cpp.s
+
+gameController.obj: gameController.cpp.obj
+.PHONY : gameController.obj
+
+# target to build an object file
+gameController.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/gameController.cpp.obj
+.PHONY : gameController.cpp.obj
+
+gameController.i: gameController.cpp.i
+.PHONY : gameController.i
+
+# target to preprocess a source file
+gameController.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/gameController.cpp.i
+.PHONY : gameController.cpp.i
+
+gameController.s: gameController.cpp.s
+.PHONY : gameController.s
+
+# target to generate assembly for a file
+gameController.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\EndlessDungeon.dir\build.make CMakeFiles/EndlessDungeon.dir/gameController.cpp.s
+.PHONY : gameController.cpp.s
 
 gridRender.obj: gridRender.cpp.obj
 .PHONY : gridRender.obj
@@ -384,15 +408,18 @@ help:
 	@echo ... EndlessDungeon
 	@echo ... glfw
 	@echo ... raylib
-	@echo ... GameController.obj
-	@echo ... GameController.i
-	@echo ... GameController.s
 	@echo ... PlayerController.obj
 	@echo ... PlayerController.i
 	@echo ... PlayerController.s
 	@echo ... common.obj
 	@echo ... common.i
 	@echo ... common.s
+	@echo ... dungeonController.obj
+	@echo ... dungeonController.i
+	@echo ... dungeonController.s
+	@echo ... gameController.obj
+	@echo ... gameController.i
+	@echo ... gameController.s
 	@echo ... gridRender.obj
 	@echo ... gridRender.i
 	@echo ... gridRender.s
