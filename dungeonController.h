@@ -1,7 +1,8 @@
-#include "common.h"
 
 #ifndef DUNGEONCONTROLLER_H
 #define DUNGEONCONTROLLER_H
+
+#include "common.h"
 
 struct DesignatedTiles {
     int traps;

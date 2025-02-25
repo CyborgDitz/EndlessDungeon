@@ -36,21 +36,24 @@ void countTiles() {
         }
     }
 }
-void fillEmptyCells()
-    {
-        {
-        std::vector<std::pair<int,int>> emptyCells;
 
-        forEachCell([&emptyCells](int x, int y)
-            {
-            if (grid.cells[y][x] == EMPTY) {
+std::vector<std::pair<int,int>> collectEmptyCells() {
+    std::vector<std::pair<int,int>> emptyCells;
+    forEachCell([&emptyCells](int x, int y) {
+        if (grid.cells[y][x] == EMPTY) {
             emptyCells.emplace_back(y, x);
-            }
-        });
+        }
+    });
+    return emptyCells;
+}
 
+void shuffleEmptyCells(std::vector<std::pair<int,int>>& emptyCells) {
     std::random_device rd;
     std::mt19937 engine(rd());
     std::shuffle(emptyCells.begin(), emptyCells.end(), engine);
+}
+
+void assignSpecialTiles(std::vector<std::pair<int,int>>& emptyCells) {
 
     auto assignTiles = [&](CellType tileType, int count) {
         for (int i = 0; i < count && !emptyCells.empty(); ++i) {
@@ -65,12 +68,18 @@ void fillEmptyCells()
     assignTiles(ENEMY, designatedTiles.enemies);
     assignTiles(STAIRS, designatedTiles.stairs);
 }
+
+void fillEmptyCells() {
+    auto emptyCells = collectEmptyCells();
+    shuffleEmptyCells(emptyCells);
+    assignSpecialTiles(emptyCells);
     countTiles();
 }
 
 
+
 void generateRandomGrid() {
-    // Create a random engine and a uniform distribution [0, 5].
+
     std::random_device rd;
     std::mt19937 engine(rd());
     std::uniform_int_distribution<int> distribution(0, 5);
