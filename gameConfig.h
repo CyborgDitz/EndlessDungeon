@@ -6,8 +6,8 @@
 #define GAMECONFIG_H
 
 struct GameConfig {
-    int damageFromTrap = 10;
-    int damageFromEnemy = 20;
+    int damageFromTrap = 5;
+    int damageFromEnemy = 10;
     int healingFromLoot = 5;
 };
 
