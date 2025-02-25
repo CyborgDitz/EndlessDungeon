@@ -14,7 +14,6 @@ Game::~Game() {
 }
 
 void Game::HandleInput() {
-
     if (IsKeyPressed(KEY_SPACE)) {
         generateMazeDungeon(player.x, player.y);
     }
