@@ -13,6 +13,7 @@ public:
     Game();
     ~Game();
     void Run();
+    void RestartGame();
 
 private:
     Player player;
