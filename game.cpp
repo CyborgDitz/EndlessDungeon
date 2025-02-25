@@ -5,7 +5,6 @@ Game::Game() {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Dungeon Tile Generator");
     SetTargetFPS(60);
 
-
     player = {1, 1, 100};
     generateRandomGrid();
     generateMazeDungeon(player.x, player.y);
