@@ -9,5 +9,5 @@
 #include "playerController.h"
 
 void dungeonSetup();
-
+void fillEmptyCells();
 #endif //GAMECONTROLLER_H

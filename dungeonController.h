@@ -5,5 +5,5 @@
 
 void generateRandomGrid();
 void generateMazeDungeon();
-void fillEmptyCells();
+
 #endif //DUNGEONCONTROLLER_H
