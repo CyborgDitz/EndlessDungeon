@@ -5,8 +5,9 @@ int main() {
     InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Dungeon Tile Generator");
     SetTargetFPS(60);
     Player player = {1, 1, 100};
-    generateMazeDungeon(player.x, player.y);
     generateRandomGrid();
+    generateMazeDungeon(player.x, player.y);
+
 
     while (!WindowShouldClose()) {
 

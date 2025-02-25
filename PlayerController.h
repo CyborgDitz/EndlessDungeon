@@ -4,6 +4,7 @@
 #include <vector>
 #include "common.h"
 #include "playerData.h"
+#include "gameConfig.h"
 
 extern GameConfig gameConfig;
 

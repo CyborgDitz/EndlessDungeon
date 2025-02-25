@@ -3,7 +3,7 @@
 
 #include "raylib.h"
 #include "raymath.h"
-#include "gameConfig.h"
+
 #include <vector>
 #include <map>
 #include <ctime>
@@ -46,11 +46,6 @@ typedef struct Grid {
         }
     }
 } Grid;
-
-static bool inBounds(int y, int x) {
-    return (y >= 0 && y < GRID_SIZE &&
-            x >= 0 && x < GRID_SIZE);
-}
 struct TileCounters {
     int wallCount;
     int trapCount;
@@ -62,6 +57,20 @@ struct TileCounters {
     TileCounters()
         : wallCount(0), trapCount(0), lootCount(0), enemyCount(0), stairsCount(0), emptyCount(0) {}
 };
+static bool inBounds(int y, int x) {
+    return (y >= 0 && y < GRID_SIZE &&
+            x >= 0 && x < GRID_SIZE);
+}
+
+template<typename Func>
+void forEachCell(Func func) {
+    for (int y = 0; y < GRID_SIZE; y++) {
+        for (int x = 0; x < GRID_SIZE; x++) {
+            func(x, y);
+        }
+    }
+}
+
 extern Grid grid;
 extern TileCounters tileCounters;
 
