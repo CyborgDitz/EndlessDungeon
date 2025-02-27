@@ -4,41 +4,49 @@
 #include <random>
 #include <utility>
 
-DesignatedTiles designatedTiles = { 5, 5, 7, 1 };
+#include "gameConfig.h"
+#include "PlayerController.h"
+
+std::random_device rd;
+std::mt19937 engine(rd());
+
+DesignatedTiles designatedTiles;
+
+void generateRandomTileCounts(GameConfig& gameConfig) {
+    int minTraps   = gameConfig.minMin;
+    int minLoot    = gameConfig.minMin;
+    int minEnemies = gameConfig.minMin;
+
+    std::uniform_int_distribution<int> trapDist(minTraps, gameConfig.maxTraps);
+    std::uniform_int_distribution<int> lootDist(minLoot, gameConfig.maxLoot);
+    std::uniform_int_distribution<int> enemyDist(minEnemies, gameConfig.maxEnemies);
+
+    designatedTiles.traps   = trapDist(engine);
+    designatedTiles.loot    = lootDist(engine);
+    designatedTiles.enemies = enemyDist(engine);
+    designatedTiles.stairs  = 1;
+}
 
 void countTiles() {
     tileCounters = TileCounters();
 
-    for (auto & cell : grid.cells) {
-        for (auto & x : cell) {
+    for (auto &cell : grid.cells) {
+        for (auto &x : cell) {
             switch (x) {
-                case WALL:
-                    tileCounters.wallCount++;
-                    break;
-                case TRAP:
-                    tileCounters.trapCount++;
-                    break;
-                case LOOT:
-                    tileCounters.lootCount++;
-                    break;
-                case ENEMY:
-                    tileCounters.enemyCount++;
-                    break;
-                case STAIRS:
-                    tileCounters.stairsCount++;
-                    break;
-                case EMPTY:
-                    tileCounters.emptyCount++;
-                    break;
-                default:
-                    break;
+                case WALL: tileCounters.wallCount++; break;
+                case TRAP: tileCounters.trapCount++; break;
+                case LOOT: tileCounters.lootCount++; break;
+                case ENEMY: tileCounters.enemyCount++; break;
+                case STAIRS: tileCounters.stairsCount++; break;
+                case EMPTY: tileCounters.emptyCount++; break;
+                default: break;
             }
         }
     }
 }
 
-std::vector<std::pair<int,int>> collectEmptyCells() {
-    std::vector<std::pair<int,int>> emptyCells;
+std::vector<std::pair<int, int>> collectEmptyCells() {
+    std::vector<std::pair<int, int>> emptyCells;
     forEachCell([&emptyCells](int x, int y) {
         if (grid.cells[y][x] == EMPTY) {
             emptyCells.emplace_back(y, x);
@@ -47,14 +55,11 @@ std::vector<std::pair<int,int>> collectEmptyCells() {
     return emptyCells;
 }
 
-void shuffleEmptyCells(std::vector<std::pair<int,int>>& emptyCells) {
-    std::random_device rd;
-    std::mt19937 engine(rd());
+void shuffleEmptyCells(std::vector<std::pair<int, int>>& emptyCells) {
     std::shuffle(emptyCells.begin(), emptyCells.end(), engine);
 }
 
-void assignSpecialTiles(std::vector<std::pair<int,int>>& emptyCells) {
-
+void assignSpecialTiles(std::vector<std::pair<int, int>>& emptyCells) {
     auto assignTiles = [&](CellType tileType, int count) {
         for (int i = 0; i < count && !emptyCells.empty(); ++i) {
             auto pos = emptyCells.back();
@@ -76,29 +81,24 @@ void fillEmptyCells() {
     countTiles();
 }
 
-
-
 void generateRandomGrid() {
-
-    std::random_device rd;
-    std::mt19937 engine(rd());
     std::uniform_int_distribution<int> distribution(0, 5);
 
-    forEachCell([&engine, &distribution](int x, int y) {
+    forEachCell([&](int x, int y) {
         int randomTile = distribution(engine);
         grid.cells[y][x] = static_cast<CellType>(randomTile);
     });
+
+    generateRandomTileCounts( gameConfig);
     countTiles();
 }
 
 void generateMazeDungeon(int playerX, int playerY) {
-    std::random_device rd;
-    std::mt19937 engine(rd());
     bool validSpawn = true;
 
     while (validSpawn) {
-        for (auto & cell : grid.cells) {
-            for (auto & x : cell) {
+        for (auto &cell : grid.cells) {
+            for (auto &x : cell) {
                 x = WALL;
             }
         }
@@ -106,7 +106,7 @@ void generateMazeDungeon(int playerX, int playerY) {
         int startX = 1, startY = 1;
         grid.cells[startY][startX] = EMPTY;
 
-        std::vector<std::pair<int,int>> cellList;
+        std::vector<std::pair<int, int>> cellList;
         cellList.emplace_back(startY, startX);
 
         while (!cellList.empty()) {
@@ -115,26 +115,21 @@ void generateMazeDungeon(int playerX, int playerY) {
             }
 
             std::size_t index = cellList.size() - 1;
-            std::pair<int,int> current = cellList[index];
+            std::pair<int, int> current = cellList[index];
             int cy = current.first;
             int cx = current.second;
 
-            std::vector<std::pair<int,int>> neighbors;
+            std::vector<std::pair<int, int>> neighbors;
 
-            if (cy - 2 > 0 && grid.cells[cy - 2][cx] == WALL)
-                neighbors.emplace_back(cy - 2, cx);
-            if (cy + 2 < GRID_SIZE - 1 && grid.cells[cy + 2][cx] == WALL)
-                neighbors.emplace_back(cy + 2, cx);
-            if (cx - 2 > 0 && grid.cells[cy][cx - 2] == WALL)
-                neighbors.emplace_back(cy, cx - 2);
-            if (cx + 2 < GRID_SIZE - 1 && grid.cells[cy][cx + 2] == WALL)
-                neighbors.emplace_back(cy, cx + 2);
+            if (cy - 2 > 0 && grid.cells[cy - 2][cx] == WALL) neighbors.emplace_back(cy - 2, cx);
+            if (cy + 2 < GRID_SIZE - 1 && grid.cells[cy + 2][cx] == WALL) neighbors.emplace_back(cy + 2, cx);
+            if (cx - 2 > 0 && grid.cells[cy][cx - 2] == WALL) neighbors.emplace_back(cy, cx - 2);
+            if (cx + 2 < GRID_SIZE - 1 && grid.cells[cy][cx + 2] == WALL) neighbors.emplace_back(cy, cx + 2);
 
             if (!neighbors.empty()) {
-
                 std::uniform_int_distribution<std::size_t> dist(0, neighbors.size() - 1);
                 std::size_t randIndex = dist(engine);
-                std::pair<int,int> nextCell = neighbors[randIndex];
+                std::pair<int, int> nextCell = neighbors[randIndex];
                 int ny = nextCell.first;
                 int nx = nextCell.second;
 
@@ -149,5 +144,7 @@ void generateMazeDungeon(int playerX, int playerY) {
             }
         }
     }
+
+    generateRandomTileCounts (gameConfig);
     fillEmptyCells();
 }
