@@ -2,10 +2,8 @@
 #include "common.h"
 #include "Game.h"
 #include "gridRender.h"
-
 GameConfig gameConfig;
 Game* game;
-
 
 void applyTileEffects(Player& player, const std::vector<TileEffect>& effects, Game& game)
 {

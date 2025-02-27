@@ -10,18 +10,28 @@
 #include <iostream>
 
 
-static const int GRID_SIZE = 23;
-static const int TILE_SIZE = 52;
-static const int SCREEN_WIDTH = GRID_SIZE * TILE_SIZE;
-static const int SCREEN_HEIGHT = GRID_SIZE * TILE_SIZE;
+static const int GRID_SIZE = 15;
+static const int SCREEN_WIDTH = 1200;
+static const int SCREEN_HEIGHT = 1200;
+
+static const int TILE_SIZE = std::min(SCREEN_WIDTH, SCREEN_HEIGHT) / GRID_SIZE;
 
 enum CellType {
-    WALL = 0,
+    WALL,
     TRAP,
     LOOT,
     ENEMY,
     STAIRS,
     EMPTY
+};
+
+static const Color TILE_COLORS[] = {
+    DARKGRAY,
+    DARKPURPLE,
+    GOLD,
+    RED,
+    GREEN,
+    WHITE
 };
 
 enum TileEffect {
