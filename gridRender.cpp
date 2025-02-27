@@ -54,7 +54,7 @@ void drawGrid() {
     DrawTextWithBorder(TextFormat("Traps: %d", tileCounters.trapCount), textX + spacing, textY, fontSize, PURPLE, BLACK);
     DrawTextWithBorder(TextFormat("Loot: %d", tileCounters.lootCount), textX + 2 * spacing, textY, fontSize, GOLD, BLACK);
     DrawTextWithBorder(TextFormat("Enemies: %d", tileCounters.enemyCount), textX + 3 * spacing, textY, fontSize, RED, BLACK);
-    DrawTextWithBorder(TextFormat("Empty: %d", tileCounters.emptyCount), textX + 6 * spacing, textY, fontSize, WHITE, BLACK);
     DrawTextWithBorder(TextFormat("Keys: %d", tileCounters.keyCount), textX + 4 * spacing, textY, fontSize, BLUE, BLACK);
+    DrawTextWithBorder(TextFormat("SPACEBAR"), textX + 6 * spacing, textY, fontSize, WHITE, BLACK);
 
 }
