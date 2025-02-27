@@ -1,17 +1,17 @@
 #include "PlayerController.h"
 #include "common.h"
+#include "Game.h"
 #include "gridRender.h"
 
 GameConfig gameConfig;
-
-void applyTileEffects(Player& player, const std::vector<TileEffect>& effects)
+Game* game;
+void applyTileEffects(Player& player, const std::vector<TileEffect>& effects, Game& game)
 {
     for (TileEffect effect : effects)
     {
         switch (effect)
         {
         case CLEAR_TILE:
-            // Clear the tile the player is on
             grid.cells[player.y][player.x] = EMPTY;
             std::cout << "Tile cleared!\n";
             break;
@@ -42,9 +42,13 @@ void applyTileEffects(Player& player, const std::vector<TileEffect>& effects)
             // TODO: Add push logic here
             break;
 
-        case NEXT_LEVEL:
-            std::cout << "You found the stairs! Moving to the next level.\n";
-            // TODO: Level transition logic
+            case NEXT_LEVEL:
+                std::cout << "You found the stairs! Moving to the next level.\n";
+            if (player.health > 0)
+            {
+                game.RestartGame();
+                std::cout << "The player wins\n";
+            }
             break;
             default:
 
@@ -53,26 +57,27 @@ void applyTileEffects(Player& player, const std::vector<TileEffect>& effects)
     }
 }
 
-void checkTileEffect(Player& player)
+void checkTileEffect(Player& player, Game& game)
 {
     CellType currentTile = grid.cells[player.y][player.x];
 
     auto it = tileEffects.find(currentTile);
     if (it != tileEffects.end()) {
-        applyTileEffects(player, it->second);
+        applyTileEffects(player, it->second, game);
     }
 }
+
 void playerInput(Player& player) {
-    if (IsKeyPressed(KEY_W)) {
+    if (IsKeyDown(KEY_W)) {
         movePlayer(player, 0, -1);
     }
-    if (IsKeyPressed(KEY_S)) {
+    if (IsKeyDown(KEY_S)) {
         movePlayer(player, 0, 1);
     }
-    if (IsKeyPressed(KEY_A)) {
+    if (IsKeyDown(KEY_A)) {
         movePlayer(player, -1, 0);
     }
-    if (IsKeyPressed(KEY_D)) {
+    if (IsKeyDown(KEY_D)) {
         movePlayer(player, 1, 0);
     }
 }
@@ -108,7 +113,7 @@ void drawPlayer(const Player& player) {
 }
 
 
-void updatePlayer(Player& player) {
+void updatePlayer(Player& player,Game& game) {
     playerInput(player);
-    checkTileEffect(player);
+    checkTileEffect(player,game);
 }

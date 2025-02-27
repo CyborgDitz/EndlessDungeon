@@ -158,7 +158,7 @@
 				{
 					"directoryIndex" : 4,
 					"id" : "glfw::@0007fcb0029cba81045f",
-					"jsonFile" : "target-glfw-Debug-1b870392e6173dcd3858.json",
+					"jsonFile" : "target-glfw-Debug-42026d3565a15a06dde2.json",
 					"name" : "glfw",
 					"projectIndex" : 2
 				},
@@ -189,8 +189,8 @@
 	"kind" : "codemodel",
 	"paths" : 
 	{
-		"build" : "C:/Projects/C++Projects/EndlessDungeon/cmake-build-debug",
-		"source" : "C:/Projects/C++Projects/EndlessDungeon"
+		"build" : "C:/Projects/C++/EndlessDungeon/cmake-build-debug",
+		"source" : "C:/Projects/C++/EndlessDungeon"
 	},
 	"version" : 
 	{

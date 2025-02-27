@@ -10,8 +10,8 @@
 #include <iostream>
 
 
-static const int GRID_SIZE = 33;
-static const int TILE_SIZE = 28;
+static const int GRID_SIZE = 23;
+static const int TILE_SIZE = 52;
 static const int SCREEN_WIDTH = GRID_SIZE * TILE_SIZE;
 static const int SCREEN_HEIGHT = GRID_SIZE * TILE_SIZE;
 
@@ -72,7 +72,7 @@ void forEachCell(Func func) {
 
 extern Grid grid;
 extern TileCounters tileCounters;
-
+extern bool win;
 typedef std::map<CellType, std::vector<TileEffect>> TileEffectsMap;
 extern TileEffectsMap tileEffects;
 

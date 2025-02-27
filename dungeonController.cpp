@@ -4,7 +4,7 @@
 #include <random>
 #include <utility>
 
-DesignatedTiles designatedTiles = { 5, 3, 7, 1 };
+DesignatedTiles designatedTiles = { 5, 5, 7, 1 };
 
 void countTiles() {
     tileCounters = TileCounters();
@@ -97,7 +97,6 @@ void generateMazeDungeon(int playerX, int playerY) {
     bool validSpawn = true;
 
     while (validSpawn) {
-        // Set all cells to WALL.
         for (auto & cell : grid.cells) {
             for (auto & x : cell) {
                 x = WALL;
@@ -114,7 +113,7 @@ void generateMazeDungeon(int playerX, int playerY) {
             if (grid.cells[playerY][playerX] == EMPTY) {
                 validSpawn = false;
             }
-            // Use std::size_t for the index to avoid narrowing conversion.
+
             std::size_t index = cellList.size() - 1;
             std::pair<int,int> current = cellList[index];
             int cy = current.first;
@@ -132,7 +131,7 @@ void generateMazeDungeon(int playerX, int playerY) {
                 neighbors.emplace_back(cy, cx + 2);
 
             if (!neighbors.empty()) {
-                // Use std::size_t for distribution index to match neighbors.size() type.
+
                 std::uniform_int_distribution<std::size_t> dist(0, neighbors.size() - 1);
                 std::size_t randIndex = dist(engine);
                 std::pair<int,int> nextCell = neighbors[randIndex];

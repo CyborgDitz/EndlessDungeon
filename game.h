@@ -4,7 +4,6 @@
 #include "raylib.h"
 #include "gridRender.h"
 #include "dungeonController.h"
-#include "playerController.h"
 #include "gameConfig.h"
 #include "common.h"
 

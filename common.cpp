@@ -9,3 +9,4 @@ TileEffectsMap tileEffects = {
     {ENEMY,  {DAMAGE_PLAYER, PUSH_PLAYER, CLEAR_TILE}},
     {STAIRS, {NEXT_LEVEL}},
 };
+bool win = false;
