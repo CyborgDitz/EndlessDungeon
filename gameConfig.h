@@ -14,8 +14,6 @@ struct GameConfig {
     bool  showLevelMessage   = false;
     float messageTimer       =  2.0f;
 
-
-
     int   minMin             =  3;
     int   maxTraps           =  6;
     int   maxLoot            =  5;
@@ -23,6 +21,9 @@ struct GameConfig {
     int   minTraps           = minMin;
     int   minLoot            = minMin;
     int   minEnemies         = minMin;
+
+    int   pushDistance       =  -2;
+    int   jumpDistance       =  2;
 };
 
 #endif // GAMECONFIG_H

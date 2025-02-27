@@ -41,6 +41,7 @@ enum TileEffect {
     DAMAGE_PLAYER,
     HEAL_PLAYER,
     PUSH_PLAYER,
+    JUMP_PLAYER,
     BLOCK_PLAYER,
     COLLECT_KEY,
     NEXT_LEVEL,

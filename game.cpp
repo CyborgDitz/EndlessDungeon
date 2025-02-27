@@ -17,7 +17,7 @@ void Game::RestartGame() {
     player.x = 1;
     player.y = 1;
     player.health = 100;
-
+    player.keys = 0;
     generateRandomGrid();
     generateMazeDungeon(player.x, player.y);
 }

@@ -1,11 +1,11 @@
 #include "PlayerController.h"
+
 #include "common.h"
 #include "Game.h"
 #include "gridRender.h"
 
 GameConfig gameConfig;
 Game* game;
-
 void applyTileEffects(Player& player, const std::vector<TileEffect>& effects, Game& game) {
     for (TileEffect effect : effects) {
         switch (effect) {
@@ -25,26 +25,31 @@ void applyTileEffects(Player& player, const std::vector<TileEffect>& effects, Ga
 
             case HEAL_PLAYER:
                 player.health += gameConfig.healingFromLoot;
-                std::cout << "Player found loot! Health +" << gameConfig.healingFromLoot << "\n";
                 break;
 
             case COLLECT_KEY:
                 player.keys += 1;
-                std::cout << "Player picked up a key! Keys: " << player.keys << "\n";
-
                 grid.cells[player.y][player.x] = EMPTY;
                 break;
 
             case PUSH_PLAYER: {
-                CellType currentTile = grid.cells[player.y][player.x];
-                int pushDistance = (currentTile == TRAP) ? 1 : 2;
+                int pushDistance = gameConfig.pushDistance; // Using the value from the config
+                int newX = player.x + (player.lastMoveX * pushDistance);
+                int newY = player.y + (player.lastMoveY * pushDistance);
+                if (inBounds(newY, newX) && grid.cells[newY][newX] != WALL) {
+                    player.x = newX;
+                    player.y = newY;
+                }
+                break;
+            }
 
-                int backX = player.x - (player.lastMoveX * pushDistance);
-                int backY = player.y - (player.lastMoveY * pushDistance);
-
-                if (inBounds(backY, backX) && grid.cells[backY][backX] != WALL) {
-                    player.x = backX;
-                    player.y = backY;
+            case JUMP_PLAYER: {
+                int jumpDistance = gameConfig.jumpDistance; // Using the value from the config
+                int jumpX = player.x + (player.lastMoveX * jumpDistance);
+                int jumpY = player.y + (player.lastMoveY * jumpDistance);
+                if (inBounds(jumpY, jumpX) && grid.cells[jumpY][jumpX] != WALL) {
+                    player.x = jumpX;
+                    player.y = jumpY;
                 }
                 break;
             }
@@ -54,16 +59,15 @@ void applyTileEffects(Player& player, const std::vector<TileEffect>& effects, Ga
                     gameConfig.showLevelMessage = true;
                     gameConfig.messageTimer = 2.0f;
                     game.RestartGame();
-                } else {
-                    std::cout << "You need exactly " << gameConfig.keysToWin << " keys to enter the next level! Current keys: " << player.keys << "\n";
                 }
-            break;
+                break;
 
             default:
                 break;
         }
     }
 }
+
 
 void checkTileEffect(Player& player, Game& game) {
     CellType currentTile = grid.cells[player.y][player.x];
