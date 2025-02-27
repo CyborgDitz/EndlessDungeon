@@ -16,15 +16,6 @@ static const int SCREEN_HEIGHT = 1200;
 
 static const int TILE_SIZE = std::min(SCREEN_WIDTH, SCREEN_HEIGHT) / GRID_SIZE;
 
-enum CellType {
-    WALL,
-    TRAP,
-    LOOT,
-    ENEMY,
-    STAIRS,
-    EMPTY
-};
-
 static const Color TILE_COLORS[] = {
     DARKGRAY,
     DARKPURPLE,
@@ -32,6 +23,15 @@ static const Color TILE_COLORS[] = {
     RED,
     GREEN,
     WHITE
+};
+
+enum CellType {
+    WALL,
+    TRAP,
+    LOOT,
+    ENEMY,
+    STAIRS,
+    EMPTY
 };
 
 enum TileEffect {
@@ -44,12 +44,12 @@ enum TileEffect {
 };
 
 typedef struct Grid {
-    CellType cells[GRID_SIZE][GRID_SIZE];
+    CellType cells[GRID_SIZE][GRID_SIZE]{};
 
     Grid() {
-        for (int i = 0; i < GRID_SIZE; ++i) {
-            for (int j = 0; j < GRID_SIZE; ++j) {
-                cells[i][j] = EMPTY;
+        for (auto & cell : cells) {
+            for (auto & j : cell) {
+                j = EMPTY;
             }
         }
     }

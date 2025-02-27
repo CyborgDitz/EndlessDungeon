@@ -402,8 +402,13 @@ CMakeFiles/EndlessDungeon.dir/dungeonController.cpp.obj: C:/Projects/C++/Endless
   C:/Program\ Files/JetBrains/CLion\ 2024.3.1.1/bin/mingw/x86_64-w64-mingw32/include/wctype.h \
   C:/raylib/raylib/src/raylib.h \
   C:/raylib/raylib/src/raymath.h \
+  C:/Projects/C++/EndlessDungeon/game.h \
+  C:/Projects/C++/EndlessDungeon/PlayerController.h \
   C:/Projects/C++/EndlessDungeon/common.h \
-  C:/Projects/C++/EndlessDungeon/dungeonController.h
+  C:/Projects/C++/EndlessDungeon/dungeonController.h \
+  C:/Projects/C++/EndlessDungeon/gameConfig.h \
+  C:/Projects/C++/EndlessDungeon/gridRender.h \
+  C:/Projects/C++/EndlessDungeon/playerData.h
 
 CMakeFiles/EndlessDungeon.dir/game.cpp.obj: C:/Projects/C++/EndlessDungeon/game.cpp \
   C:/Program\ Files/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/c++/backward/binders.h \
@@ -1618,11 +1623,11 @@ C:/Program\ Files/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw
 
 C:/Program\ Files/JetBrains/CLion\ 2024.3.1.1/bin/mingw/lib/gcc/x86_64-w64-mingw32/13.1.0/include/xmmintrin.h:
 
-C:/Projects/C++/EndlessDungeon/game.cpp:
-
 C:/Projects/C++/EndlessDungeon/game.h:
 
 C:/Projects/C++/EndlessDungeon/gameConfig.h:
+
+C:/Projects/C++/EndlessDungeon/game.cpp:
 
 C:/Projects/C++/EndlessDungeon/main.cpp:
 

@@ -2,76 +2,69 @@
 #include "common.h"
 #include "Game.h"
 #include "gridRender.h"
+
 GameConfig gameConfig;
 Game* game;
 
-void applyTileEffects(Player& player, const std::vector<TileEffect>& effects, Game& game)
-{
-    for (TileEffect effect : effects)
-    {
-        switch (effect)
-        {
-        case CLEAR_TILE:
-            grid.cells[player.y][player.x] = EMPTY;
-            std::cout << "Tile cleared!\n";
-            break;
+void applyTileEffects(Player& player, const std::vector<TileEffect>& effects, Game& game) {
+    for (TileEffect effect : effects) {
+        switch (effect) {
+            case CLEAR_TILE:
+                grid.cells[player.y][player.x] = EMPTY;
+                break;
 
-        case DAMAGE_PLAYER:
-            {
+            case DAMAGE_PLAYER: {
                 CellType currentTile = grid.cells[player.y][player.x];
                 if (currentTile == TRAP) {
                     player.health -= gameConfig.damageFromTrap;
-                    std::cout << "Player stepped on a trap! Health -"
-                              << gameConfig.damageFromTrap << "\n";
                 } else if (currentTile == ENEMY) {
                     player.health -= gameConfig.damageFromEnemy;
-                    std::cout << "Bonked an enemy! Health -"
-                              << gameConfig.damageFromEnemy << "\n";
                 }
+                break;
             }
-            break;
 
-        case HEAL_PLAYER:
-            player.health += gameConfig.healingFromLoot;
-            std::cout << "Player found loot! Health +"
-                      << gameConfig.healingFromLoot << "\n";
-            break;
+            case HEAL_PLAYER:
+                player.health += gameConfig.healingFromLoot;
+                std::cout << "Player found loot! Health +" << gameConfig.healingFromLoot << "\n";
+                break;
 
-        case PUSH_PLAYER:
-            std::cout << "Player bumped into a wall and was pushed back!\n";
-            // TODO: Add push logic here
-            break;
+            case PUSH_PLAYER: {
+                int originalX = player.x;
+                int originalY = player.y;
+
+                CellType currentTile = grid.cells[player.y][player.x];
+                int pushDistance = (currentTile == TRAP) ? 1 : 2;
+
+                int backX = player.x - (player.lastMoveX * pushDistance);
+                int backY = player.y - (player.lastMoveY * pushDistance);
+
+                if (inBounds(backY, backX) && grid.cells[backY][backX] != WALL) {
+                    player.x = backX;
+                    player.y = backY;
+                }
+
+                // Now clear the original tile AFTER moving
+                grid.cells[originalY][originalX] = EMPTY;
+                std::cout << "Tile cleared after push!\n";
+                break;
+            }
 
             case NEXT_LEVEL:
-                std::cout << "You found the stairs! Moving to the next level.\n";
-
-            if (player.health > 0)
-            {
-                gameConfig.showLevelMessage = true;
-                gameConfig.messageTimer = 2.0f;
-
-                game.RestartGame();
-                std::cout << "The player wins\n";
-            }
-            break;
+                if (player.health > 0) {
+                    gameConfig.showLevelMessage = true;
+                    gameConfig.messageTimer = 2.0f;
+                    game.RestartGame();
+                    std::cout << "The player wins\n";
+                }
+                break;
 
             default:
-
                 break;
         }
     }
 }
-void drawLevelMessage()
-{
-    if (gameConfig.showLevelMessage)
-    {
-        DrawText("You found the stairs!\n"
-            " Moving to the next level.\n", 200, 400, 60, PINK);
-    }
-}
 
-void checkTileEffect(Player& player, Game& game)
-{
+void checkTileEffect(Player& player, Game& game) {
     CellType currentTile = grid.cells[player.y][player.x];
 
     auto it = tileEffects.find(currentTile);
@@ -81,42 +74,39 @@ void checkTileEffect(Player& player, Game& game)
 }
 
 void playerInput(Player& player) {
-    if (IsKeyDown(KEY_W)) {
-        movePlayer(player, 0, -1);
-    }
-    if (IsKeyDown(KEY_S)) {
-        movePlayer(player, 0, 1);
-    }
-    if (IsKeyDown(KEY_A)) {
-        movePlayer(player, -1, 0);
-    }
-    if (IsKeyDown(KEY_D)) {
-        movePlayer(player, 1, 0);
-    }
+    if (IsKeyDown(KEY_W)) movePlayer(player, 0, -1);
+    if (IsKeyDown(KEY_S)) movePlayer(player, 0, 1);
+    if (IsKeyDown(KEY_A)) movePlayer(player, -1, 0);
+    if (IsKeyDown(KEY_D)) movePlayer(player, 1, 0);
 }
-void movePlayer(Player& player, int directionX, int directionY)
-{
+
+void movePlayer(Player& player, int directionX, int directionY) {
     gameConfig.moveTimer -= GetFrameTime();
 
-    if (gameConfig.moveTimer <= 0.0f)
-    {
+    if (gameConfig.moveTimer <= 0.0f) {
         int newX = player.x + directionX;
         int newY = player.y + directionY;
 
-        if (inBounds(newY, newX) && grid.cells[newY][newX] != WALL)
-        {
+        if (inBounds(newY, newX) && grid.cells[newY][newX] != WALL) {
             player.x = newX;
             player.y = newY;
+            player.lastMoveX = directionX;
+            player.lastMoveY = directionY;
         }
 
-        gameConfig.moveTimer = gameConfig.moveCooldown; // Reset timer
+        gameConfig.moveTimer = gameConfig.moveCooldown;
     }
 }
 
+void drawLevelMessage() {
+    if (gameConfig.showLevelMessage) {
+        DrawText("You found the stairs!\n Moving to the next level.\n", 200, 400, 60, PINK);
+    }
+}
 
 void drawHealth(const Player& player) {
     char healthText[32];
-   sprintf(healthText, "HP: %d", player.health);
+    sprintf(healthText, "HP: %d", player.health);
 
     int pixelX = player.x * TILE_SIZE;
     int pixelY = player.y * TILE_SIZE - 25;
@@ -133,17 +123,13 @@ void drawPlayer(const Player& player) {
     );
 }
 
-
-void updatePlayer(Player& player, Game& game)
-{
+void updatePlayer(Player& player, Game& game) {
     playerInput(player);
     checkTileEffect(player, game);
 
-    if (gameConfig.showLevelMessage)
-    {
+    if (gameConfig.showLevelMessage) {
         gameConfig.messageTimer -= GetFrameTime();
-        if (gameConfig.messageTimer <= 0)
-        {
+        if (gameConfig.messageTimer <= 0) {
             gameConfig.showLevelMessage = false;
         }
     }
