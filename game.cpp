@@ -41,7 +41,6 @@ void Game::HandleInput() {
 
 void Game::PlayerUpdate() {
     updatePlayer(player, *this);
-
 }
 
 void Game::Render() {
@@ -50,6 +49,7 @@ void Game::Render() {
     drawGrid();
     drawPlayer(player);
     drawHealth(player);
+    drawLevelMessage();
     EndDrawing();
 }
 

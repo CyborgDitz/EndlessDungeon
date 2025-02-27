@@ -9,6 +9,7 @@
 
 extern GameConfig gameConfig;
 void drawPlayer(const Player& player);
+void drawLevelMessage();
 void applyTileEffects(Player& player, const std::vector<TileEffect>& effects, Game& game);
 void checkTileEffect(Player& player, Game& game);
 void drawHealth(const Player& player);

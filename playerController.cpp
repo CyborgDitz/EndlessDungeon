@@ -5,6 +5,8 @@
 
 GameConfig gameConfig;
 Game* game;
+
+
 void applyTileEffects(Player& player, const std::vector<TileEffect>& effects, Game& game)
 {
     for (TileEffect effect : effects)
@@ -44,16 +46,29 @@ void applyTileEffects(Player& player, const std::vector<TileEffect>& effects, Ga
 
             case NEXT_LEVEL:
                 std::cout << "You found the stairs! Moving to the next level.\n";
+
             if (player.health > 0)
             {
+                gameConfig.showLevelMessage = true;
+                gameConfig.messageTimer = 2.0f;
+
                 game.RestartGame();
                 std::cout << "The player wins\n";
             }
             break;
+
             default:
 
                 break;
         }
+    }
+}
+void drawLevelMessage()
+{
+    if (gameConfig.showLevelMessage)
+    {
+        DrawText("You found the stairs!\n"
+            " Moving to the next level.\n", 200, 400, 60, PINK);
     }
 }
 
@@ -81,17 +96,25 @@ void playerInput(Player& player) {
         movePlayer(player, 1, 0);
     }
 }
-void movePlayer(Player& player, int directionX, int directionY) {
-    int newX = player.x + directionX;
-    int newY = player.y + directionY;
+void movePlayer(Player& player, int directionX, int directionY)
+{
+    gameConfig.moveTimer -= GetFrameTime();
 
-    if (inBounds(newY, newX)) {
-        if (grid.cells[newY][newX] != WALL) {
+    if (gameConfig.moveTimer <= 0.0f)
+    {
+        int newX = player.x + directionX;
+        int newY = player.y + directionY;
+
+        if (inBounds(newY, newX) && grid.cells[newY][newX] != WALL)
+        {
             player.x = newX;
             player.y = newY;
         }
+
+        gameConfig.moveTimer = gameConfig.moveCooldown; // Reset timer
     }
 }
+
 
 void drawHealth(const Player& player) {
     char healthText[32];
@@ -113,7 +136,17 @@ void drawPlayer(const Player& player) {
 }
 
 
-void updatePlayer(Player& player,Game& game) {
+void updatePlayer(Player& player, Game& game)
+{
     playerInput(player);
-    checkTileEffect(player,game);
+    checkTileEffect(player, game);
+
+    if (gameConfig.showLevelMessage)
+    {
+        gameConfig.messageTimer -= GetFrameTime();
+        if (gameConfig.messageTimer <= 0)
+        {
+            gameConfig.showLevelMessage = false;
+        }
+    }
 }
