@@ -9,11 +9,13 @@ struct DesignatedTiles {
     int loot;
     int enemies;
     int stairs;
+    int keys;
 };
+
 
 extern DesignatedTiles designatedTiles;
 
 void generateRandomGrid();
 void generateMazeDungeon(int playerX, int playerY);
 void countTiles();
-#endif //DUNGEONCONTROLLER_H
+#endif //DUNGEONC7NTROLLER_H

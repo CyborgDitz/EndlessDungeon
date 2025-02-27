@@ -20,15 +20,18 @@ static const Color TILE_COLORS[] = {
     DARKGRAY,
     DARKPURPLE,
     GOLD,
+    SKYBLUE,
     RED,
     GREEN,
     WHITE
 };
 
+
 enum CellType {
     WALL,
     TRAP,
     LOOT,
+    KEY,
     ENEMY,
     STAIRS,
     EMPTY
@@ -39,6 +42,7 @@ enum TileEffect {
     HEAL_PLAYER,
     PUSH_PLAYER,
     BLOCK_PLAYER,
+    COLLECT_KEY,
     NEXT_LEVEL,
     CLEAR_TILE
 };
@@ -59,12 +63,14 @@ struct TileCounters {
     int wallCount;
     int trapCount;
     int lootCount;
+    int keyCount;
     int enemyCount;
     int stairsCount;
     int emptyCount;
 
     TileCounters()
-        : wallCount(0), trapCount(0), lootCount(0), enemyCount(0), stairsCount(0), emptyCount(0) {}
+     : wallCount(0), trapCount(0), lootCount(0), keyCount(0),
+        enemyCount(0), stairsCount(0), emptyCount(0) {}
 };
 
 static bool inBounds(int y, int x) {

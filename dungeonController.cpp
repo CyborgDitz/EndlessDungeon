@@ -16,16 +16,24 @@ void generateRandomTileCounts(GameConfig& gameConfig) {
     int minTraps   = gameConfig.minMin;
     int minLoot    = gameConfig.minMin;
     int minEnemies = gameConfig.minMin;
+    int minKeys    = 1;
+    int maxKeys    = 3;
 
     std::uniform_int_distribution<int> trapDist(minTraps, gameConfig.maxTraps);
     std::uniform_int_distribution<int> lootDist(minLoot, gameConfig.maxLoot);
     std::uniform_int_distribution<int> enemyDist(minEnemies, gameConfig.maxEnemies);
+    std::uniform_int_distribution<int> keyDist(minKeys, maxKeys);
 
     designatedTiles.traps   = trapDist(engine);
     designatedTiles.loot    = lootDist(engine);
     designatedTiles.enemies = enemyDist(engine);
     designatedTiles.stairs  = 1;
+    designatedTiles.keys    = keyDist(engine);
+
+    gameConfig.keysToWin = designatedTiles.keys;
 }
+
+
 
 void countTiles() {
     tileCounters = TileCounters();
@@ -72,7 +80,9 @@ void assignSpecialTiles(std::vector<std::pair<int, int>>& emptyCells) {
     assignTiles(LOOT, designatedTiles.loot);
     assignTiles(ENEMY, designatedTiles.enemies);
     assignTiles(STAIRS, designatedTiles.stairs);
+    assignTiles(KEY, designatedTiles.keys);
 }
+
 
 void fillEmptyCells() {
     auto emptyCells = collectEmptyCells();

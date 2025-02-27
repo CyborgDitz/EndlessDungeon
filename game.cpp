@@ -2,7 +2,7 @@
 #include "PlayerController.h"
 
 Game::Game() : player(1, 1, 100) {
-    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Dungeon Tile Generator");
+    InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "EndlessDungeon");
     SetTargetFPS(60);
 
     generateRandomGrid();

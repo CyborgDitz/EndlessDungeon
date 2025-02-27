@@ -28,10 +28,14 @@ void applyTileEffects(Player& player, const std::vector<TileEffect>& effects, Ga
                 std::cout << "Player found loot! Health +" << gameConfig.healingFromLoot << "\n";
                 break;
 
-            case PUSH_PLAYER: {
-                int originalX = player.x;
-                int originalY = player.y;
+            case COLLECT_KEY:
+                player.keys += 1;
+                std::cout << "Player picked up a key! Keys: " << player.keys << "\n";
 
+                grid.cells[player.y][player.x] = EMPTY;
+                break;
+
+            case PUSH_PLAYER: {
                 CellType currentTile = grid.cells[player.y][player.x];
                 int pushDistance = (currentTile == TRAP) ? 1 : 2;
 
@@ -42,21 +46,18 @@ void applyTileEffects(Player& player, const std::vector<TileEffect>& effects, Ga
                     player.x = backX;
                     player.y = backY;
                 }
-
-                // Now clear the original tile AFTER moving
-                grid.cells[originalY][originalX] = EMPTY;
-                std::cout << "Tile cleared after push!\n";
                 break;
             }
 
             case NEXT_LEVEL:
-                if (player.health > 0) {
+                if (player.keys == gameConfig.keysToWin) {
                     gameConfig.showLevelMessage = true;
                     gameConfig.messageTimer = 2.0f;
                     game.RestartGame();
-                    std::cout << "The player wins\n";
+                } else {
+                    std::cout << "You need exactly " << gameConfig.keysToWin << " keys to enter the next level! Current keys: " << player.keys << "\n";
                 }
-                break;
+            break;
 
             default:
                 break;
@@ -111,6 +112,15 @@ void drawHealth(const Player& player) {
     int pixelX = player.x * TILE_SIZE;
     int pixelY = player.y * TILE_SIZE - 25;
     DrawText(healthText, pixelX, pixelY, 20, BLACK);
+}
+
+void drawKeys(const Player& player) {
+    char keyText[32];
+    sprintf(keyText, "Keys: %d", player.keys);
+
+    int pixelX = player.x * TILE_SIZE;
+    int pixelY = player.y * TILE_SIZE - 45;
+    DrawText(keyText, pixelX, pixelY, 20, GOLD);
 }
 
 void drawPlayer(const Player& player) {

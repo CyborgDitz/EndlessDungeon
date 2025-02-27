@@ -5,6 +5,7 @@ struct GameConfig {
     int   damageFromTrap     =  5;
     int   damageFromEnemy    = 10;
     int   healingFromLoot    =  5;
+    int   keysToWin;
 
     float moveCooldown       =  0.1f;
     float moveTimer          =  0.0f;
@@ -12,6 +13,7 @@ struct GameConfig {
 
     bool  showLevelMessage   = false;
     float messageTimer       =  2.0f;
+
 
 
     int   minMin             =  3;
